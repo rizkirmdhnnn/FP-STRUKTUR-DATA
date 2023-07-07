@@ -49,6 +49,20 @@ void login()
     cin >> username;
     cout << "Masukkan password: ";
     cin >> password;
+    for (int i = 0; i < 100; i++)
+    {
+        if (username == anggota[i].username && password == anggota[i].password)
+        {
+            if (anggota[i].admin == true)
+            {
+                dasboardAdmin(username);
+            }
+            else
+            {
+                dasboardMember(username);
+            }
+        }
+    }
 }
 
 // fungsi untuk membuat akun member baru pada array anggota
@@ -247,8 +261,36 @@ void managementBuku()
         }
     }
 }
+void daftarBuku() //
+{
+    system("cls");
+    int pilMenu
+    cout << "1. Berdasarkan Kategori ";
+    cout << "2. Berdasarkan ISBN ";
+    cout << "3. Kembali ";
+    cout << "\nPilihan : ";
+    cin >> pilMenu;
+    cin.ignore();
+    switch (pilMenu)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        dasboardAdmin();
+        break;
+    
+    default:
+        cout << "Pilihan tidak tersedia" << endl;
+        break;
+    }
 
+<<<<<<< HEAD
+}
+=======
 // fungsi untuk menampilkan daftar buku
+>>>>>>> ce425e8a60327af402159a745d13b7dddc211278
 int main()
 {
     defaultAdmin("admin", "admin", true);
