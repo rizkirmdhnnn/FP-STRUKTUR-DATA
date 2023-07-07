@@ -154,6 +154,7 @@ void loginScreen()
     }
 }
 
+// fungsi untuk menampilkan dasboard member setelah login
 void dasboardMember(string username)
 {
     int pilihan;
@@ -183,6 +184,7 @@ void dasboardMember(string username)
     }
 }
 
+// fungsi untuk dasboard admin setelah login
 void dasboardAdmin(string username)
 {
     int pilihan;
@@ -209,6 +211,7 @@ void dasboardAdmin(string username)
     }
 }
 
+// fungsi untuk mengelola buku
 void managementBuku()
 {
     int pilihan;
@@ -235,6 +238,7 @@ void managementBuku()
     }
 }
 
+// fungsi untuk menampilkan daftar buku
 int main()
 {
     defaultAdmin("admin", "admin", true);
