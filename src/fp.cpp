@@ -254,11 +254,11 @@ void managementBuku()
 void daftarBuku() //
 {
     system("cls");
-    int pilMenu
-    cout << "Mengurutkan Daftar Buku";
-    cout << "1. Berdasarkan Kategori ";
-    cout << "2. Berdasarkan ISBN ";
-    cout << "3. Kembali ";
+    int pilMenu;
+    cout << "Mengurutkan Daftar Buku" << endl;
+    cout << "1. Berdasarkan Kategori " << endl;
+    cout << "2. Berdasarkan ISBN " << endl;
+    cout << "3. Kembali " << endl;
     cout << "\nPilihan : ";
     cin >> pilMenu;
     cin.ignore();
