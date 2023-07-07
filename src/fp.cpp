@@ -198,11 +198,6 @@ void dasboardMember(string username)
     }
 }
 
-<<<<<<< HEAD
-//tampilan menu admin
-=======
-// fungsi untuk dasboard admin setelah login
->>>>>>> ce425e8a60327af402159a745d13b7dddc211278
 void dasboardAdmin(string username)
 {
     system("cls");
@@ -230,11 +225,6 @@ void dasboardAdmin(string username)
     }
 }
 
-<<<<<<< HEAD
-//Tampilan Kelola Buku
-=======
-// fungsi untuk mengelola buku
->>>>>>> ce425e8a60327af402159a745d13b7dddc211278
 void managementBuku()
 {   
     system("cls");
@@ -286,7 +276,7 @@ void daftarBuku() //
         cout << "Pilihan tidak tersedia" << endl;
         break;
     }
-
+}
 int main()
 {
     defaultAdmin("admin", "admin", true);
