@@ -33,6 +33,8 @@ void kembalikanBuku();
 void informasiAkun();
 void statistikBuku();
 
+// fungsi untuk mengisi data default admin pada array anggota index ke 0
+// parameter: username, password, admin
 void defaultAdmin(string username, string password, bool admin)
 {
     anggota[0].username = username;
@@ -49,11 +51,17 @@ void login()
     cin >> password;
 }
 
+// fungsi untuk membuat akun member baru pada array anggota
 void createAccountMember()
 {
+    // deklarasi variabel username dan password
     string username, password;
+
+    // input username
     cout << "Masukkan username: ";
     cin >> username;
+
+    // perulangan untuk mengecek apakah username sudah terdaftar atau belum
     for (int i = 0; i < 100; i++)
     {
         if (username == anggota[i].username)
@@ -62,12 +70,18 @@ void createAccountMember()
             break;
         }
     }
+
+    // input password
     cout << "Masukkan password: ";
     cin >> password;
+
+    // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
+    // perulangan untuk menimpan data username dan password pada array anggota
     for (int i = 0; i < 100; i++)
     {
         if (anggota[i].username == "")
         {
+            // menyimpan data username dan password pada array anggota
             anggota[i].username = username;
             anggota[i].password = password;
             anggota[i].admin = false;
@@ -77,11 +91,17 @@ void createAccountMember()
     }
 }
 
+// fungsi untuk membuat akun admin baru pada array anggota
 void createAccountAdmin()
 {
+    // deklarasi variabel username dan password
     string username, password;
+
+    // input username
     cout << "Masukkan username: ";
     cin >> username;
+
+    // perulangan untuk mengecek apakah username sudah terdaftar atau belum
     for (int i = 0; i < 100; i++)
     {
         if (username == anggota[i].username)
@@ -91,12 +111,17 @@ void createAccountAdmin()
         }
     }
 
+    // input password
     cout << "Masukkan password: ";
     cin >> password;
+
+    // perulangan untuk menimpan data username dan password pada array anggota
+    // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
     for (int i = 0; i < 100; i++)
     {
         if (anggota[i].username == "")
         {
+            // menyimpan data username dan password pada array anggota
             anggota[i].username = username;
             anggota[i].password = password;
             anggota[i].admin = true;
