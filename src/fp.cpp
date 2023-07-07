@@ -209,7 +209,32 @@ void managementBuku()
         }
     }
 }
+void daftarBuku() //
+{
+    system("cls");
+    int pilMenu
+    cout << "1. Berdasarkan Kategori ";
+    cout << "2. Berdasarkan ISBN ";
+    cout << "3. Kembali ";
+    cout << "\nPilihan : ";
+    cin >> pilMenu;
+    cin.ignore();
+    switch (pilMenu)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        dasboardAdmin();
+        break;
+    
+    default:
+        cout << "Pilihan tidak tersedia" << endl;
+        break;
+    }
 
+}
 int main()
 {
     defaultAdmin("admin", "admin", true);
