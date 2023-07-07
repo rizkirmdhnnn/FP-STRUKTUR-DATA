@@ -157,6 +157,32 @@ void dasboardMember(string username)
         }
     }
 }
+
+void dasboardAdmin(string username)
+{
+    int pilihan;
+    cout << "Selamat Datang " + username << endl;
+    cout << "1. Kelola Buku" << endl;
+    cout << "2. Statistik Buku" << endl;
+    cout << "3. Keluar Aplikasi" << endl;
+    cout << "Pilihan: ";
+    cin >> pilihan;
+    cin.ignore();
+    switch (pilihan)
+    {
+        {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        default:
+            cout << "Pilihan tidak tersedia" << endl;
+            break;
+        }
+    }
+}
 int main()
 {
     defaultAdmin("admin", "admin", true);
