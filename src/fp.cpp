@@ -6,8 +6,8 @@ struct Book
     string judul;
     string penulis;
     string kategori;
-    string isbn;
     string dipinjamOleh;
+    int isbn;
     int tahun;
 };
 
@@ -19,6 +19,19 @@ struct Member
 };
 
 Member anggota[100];
+
+void defaultAdmin(string username, string password, bool admin);
+void login();
+void createAccountMember();
+void createAccountAdmin();
+void loginScreen();
+void dasboardMember(string username);
+void dasboardAdmin(string username);
+void daftarBuku();
+void pinjamBuku();
+void kembalikanBuku();
+void informasiAkun();
+void statistikBuku();
 
 void defaultAdmin(string username, string password, bool admin)
 {
@@ -46,7 +59,7 @@ void createAccountMember()
         if (username == anggota[i].username)
         {
             cout << "Username sudah terdaftar" << endl;
-            createAccountMember();
+            break;
         }
     }
     cout << "Masukkan password: ";
