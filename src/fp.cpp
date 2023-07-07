@@ -25,8 +25,8 @@ void login();
 void createAccountMember();
 void createAccountAdmin();
 void loginScreen();
-void dasboardMember(string username);
-void dasboardAdmin(string username);
+void dasboardMember();
+void dasboardAdmin();
 void daftarBuku();
 void pinjamBuku();
 void kembalikanBuku();
@@ -55,11 +55,11 @@ void login()
         {
             if (anggota[i].admin == true)
             {
-                dasboardAdmin(username);
+                dasboardAdmin();
             }
             else
             {
-                dasboardMember(username);
+                dasboardMember();
             }
         }
     }
@@ -169,10 +169,10 @@ void loginScreen()
 }
 
 // fungsi untuk menampilkan dasboard member setelah login
-void dasboardMember(string username)
+void dasboardMember()
 {
     int pilihan;
-    cout << "Selamat Datang " + username << endl;
+    cout << "Selamat Datang " << endl;
     cout << "1. Daftar Buku" << endl;
     cout << "2. Pinjam Buku" << endl;
     cout << "3. Kembalikan Buku" << endl;
@@ -198,11 +198,11 @@ void dasboardMember(string username)
     }
 }
 
-void dasboardAdmin(string username)
+void dasboardAdmin()
 {
     system("cls");
     int pilihan;
-    cout << "Selamat Datang " + username << endl;
+    cout << "Selamat Datang " << endl;
     cout << "1. Kelola Buku" << endl;
     cout << "2. Statistik Buku" << endl;
     cout << "3. Keluar Aplikasi" << endl;
@@ -217,7 +217,7 @@ void dasboardAdmin(string username)
         case 2:
             break;
         case 3:
-            return 0;
+            break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
             break;
@@ -226,7 +226,7 @@ void dasboardAdmin(string username)
 }
 
 void managementBuku()
-{   
+{
     system("cls");
     int pilihan;
     cout << "Kelola Buku" << endl;
@@ -254,7 +254,7 @@ void managementBuku()
 void daftarBuku() //
 {
     system("cls");
-    int pilMenu
+    int pilMenu;
     cout << "Mengurutkan Daftar Buku";
     cout << "1. Berdasarkan Kategori ";
     cout << "2. Berdasarkan ISBN ";
@@ -271,7 +271,7 @@ void daftarBuku() //
     case 3:
         dasboardAdmin();
         break;
-    
+
     default:
         cout << "Pilihan tidak tersedia" << endl;
         break;
