@@ -18,22 +18,22 @@ struct Member
     string username;
     string password;
     bool admin;
+    bool isLogin;
 };
 
 Member anggota[100];
 stack<Book> bukuStack; // Menggunakan stack STL
 
-void defaultAdmin(string username, string password, bool admin);
+void defaultAdmin(string username, string password, bool admin, bool isLogin);
 void login();
 void createAccountMember();
-void createAccountAdmin();
 void loginScreen();
 void dasboardMember();
 void dasboardAdmin();
 void daftarBuku();
 void pinjamBuku();
 void kembalikanBuku();
-void informasiAkun();
+void informasiAkun(string admin);
 void statistikBuku();
 void managementBuku();
 void urutISBN();
@@ -43,14 +43,17 @@ void daftarBukuDipinjam();
 void tambahBuku();
 void hapusBuku();
 void sortingBuku();
+void ubahPassword(int index, string dashboard);
+void informasiAkun(string admin);
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
-void defaultAdmin(string username, string password, bool admin)
+void defaultAdmin(string username, string password, bool admin, bool isLogin)
 {
     anggota[0].username = username;
     anggota[0].password = password;
     anggota[0].admin = admin;
+    anggota[0].isLogin = isLogin; // Mengubah status login menjadi false untuk admin default
 }
 
 void login()
@@ -67,10 +70,12 @@ void login()
         {
             if (anggota[i].admin == true)
             {
+                anggota[i].isLogin = true;
                 dasboardAdmin();
             }
             else
             {
+                anggota[i].isLogin = true;
                 dasboardMember();
             }
         }
@@ -83,7 +88,6 @@ void login()
 void createAccountMember()
 {
     system("cls");
-
     // deklarasi variabel username dan password
     string username, password;
 
@@ -92,81 +96,45 @@ void createAccountMember()
     cin >> username;
 
     // perulangan untuk mengecek apakah username sudah terdaftar atau belum
+    bool usernameTerdaftar = false;
     for (int i = 0; i < 100; i++)
     {
         if (username == anggota[i].username)
         {
             cout << "Username sudah terdaftar" << endl;
+            usernameTerdaftar = true;
             break;
         }
     }
 
-    // input password
-    cout << "Masukkan password: ";
-    cin >> password;
-
-    // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
-    // perulangan untuk menimpan data username dan password pada array anggota
-    for (int i = 0; i < 100; i++)
+    if (!usernameTerdaftar)
     {
-        if (anggota[i].username == "")
+        // input password
+        cout << "Masukkan password: ";
+        cin >> password;
+
+        // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
+        for (int i = 0; i < 100; i++)
         {
-            // menyimpan data username dan password pada array anggota
-            anggota[i].username = username;
-            anggota[i].password = password;
-            anggota[i].admin = false;
-            cout << "Akun berhasil dibuat" << endl;
-            dasboardMember();
-            break;
+            if (anggota[i].username == "")
+            {
+                anggota[i].username = username;
+                anggota[i].password = password;
+                anggota[i].admin = false;
+                anggota[i].isLogin = true; // Mengubah status login menjadi true
+                cout << "Akun berhasil dibuat" << endl;
+                _sleep(1000);
+                login(); // Memanggil fungsi login setelah membuat akun anggota baru
+                break;
+            }
         }
     }
 }
 
 // fungsi untuk membuat akun admin baru pada array anggota
-void createAccountAdmin()
-{
-    system("cls");
-
-    // deklarasi variabel username dan password
-    string username, password;
-
-    // input username
-    cout << "Masukkan username: ";
-    cin >> username;
-
-    // perulangan untuk mengecek apakah username sudah terdaftar atau belum
-    for (int i = 0; i < 100; i++)
-    {
-        if (username == anggota[i].username)
-        {
-            cout << "Username sudah terdaftar" << endl;
-            createAccountAdmin();
-        }
-    }
-
-    // input password
-    cout << "Masukkan password: ";
-    cin >> password;
-
-    // perulangan untuk menimpan data username dan password pada array anggota
-    // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
-    for (int i = 0; i < 100; i++)
-    {
-        if (anggota[i].username == "")
-        {
-            // menyimpan data username dan password pada array anggota
-            anggota[i].username = username;
-            anggota[i].password = password;
-            anggota[i].admin = true;
-            cout << "Akun berhasil dibuat" << endl;
-            dasboardAdmin();
-            break;
-        }
-    }
-}
-
 void loginScreen()
 {
+
     system("cls");
     int pilihan;
     cout << "1. Masuk" << endl;
@@ -216,9 +184,16 @@ void dasboardMember()
             kembalikanBuku();
             break;
         case 4:
-            informasiAkun();
+            informasiAkun("member");
             break;
         case 5:
+            for (int i = 0; i < 100; i++)
+            {
+                if (anggota[i].isLogin == true)
+                {
+                    anggota[i].isLogin = false;
+                }
+            }
             loginScreen();
             break;
         default:
@@ -236,7 +211,7 @@ void dasboardAdmin()
     cout << "1. Daftar Buku" << endl;
     cout << "2. Kelola Buku" << endl;
     cout << "3. Statistik Buku" << endl;
-    cout << "4. Tambah Admin Baru" << endl;
+    cout << "4. Informasi Akun" << endl;
     cout << "5. Keluar Aplikasi" << endl;
     cout << "Pilihan: ";
     cin >> pilihan;
@@ -254,9 +229,16 @@ void dasboardAdmin()
             statistikBuku();
             break;
         case 4:
-            createAccountAdmin();
+            informasiAkun("admin");
             break;
         case 5:
+            for (int i = 0; i < 100; i++)
+            {
+                if (anggota[i].isLogin == true)
+                {
+                    anggota[i].isLogin = false; // Mengubah status login menjadi false
+                }
+            }
             loginScreen();
             break;
         default:
@@ -414,9 +396,81 @@ void kembalikanBuku()
 {
 }
 
-void informasiAkun()
+void ubahPassword(int index, string dashboard)
 {
+    system("cls");
+    string password;
+    cout << "Masukkan password baru: ";
+    cin >> password;
+    anggota[index].password = password;
+    cout << "Password berhasil diubah" << endl;
+    _sleep(1000);
+    if (dashboard == "admin")
+    {
+        dasboardAdmin();
+    }
+    else
+    {
+        dasboardMember();
+    }
 }
+
+void informasiAkun(string akun)
+{
+    system("cls");
+
+    for (int i = 0; i < 100; i++)
+    {
+        if (anggota[i].isLogin == true)
+        {
+            // menyimpan data username dan password pada array anggota
+
+            cout << "Informasi Akun" << endl;
+            cout << "Username : " << anggota[i].username << endl;
+            cout << "Password  : " << anggota[i].password << endl;
+
+            if (anggota[i].admin == true)
+            {
+                cout << "Jenis Akun : Admin" << endl;
+            }
+            else
+            {
+                cout << "Jenis Akun : Member" << endl;
+            }
+
+            int pilihan;
+            cout << "1. Ubah Password" << endl;
+            cout << "2. Kembali" << endl;
+            cout << "Pilihan: ";
+            cin >> pilihan;
+            cin.ignore();
+            switch (pilihan)
+            {
+                {
+                case 1:
+                    if (akun == "admin")
+                    {
+                        ubahPassword(i, "admin");
+                        dasboardAdmin(); // Tambahkan pemanggilan dasboardAdmin() setelah perubahan password
+                    }
+                    else
+                    {
+                        ubahPassword(i, "member");
+                        dasboardMember(); // Tambahkan pemanggilan dasboardMember() setelah perubahan password
+                    }
+                    break;
+                case 2:
+                    dasboardMember();
+                default:
+                    cout << "Pilihan tidak tersedia" << endl;
+                    break;
+                }
+            }
+        }
+    }
+    cout << "Akun tidak ditemukan" << endl;
+}
+
 void statistikBuku()
 {
     system("cls");
@@ -476,7 +530,7 @@ void sortingBuku()
 
 int main()
 {
-    defaultAdmin("admin", "admin", true);
+    defaultAdmin("admin", "admin", true, false);
     loginScreen();
     return 0;
 }
