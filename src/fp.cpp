@@ -213,8 +213,10 @@ void dasboardAdmin()
     {
         {
         case 1:
+            managementBuku();
             break;
         case 2:
+            statistikBuku();
             break;
         case 3:
             break;
@@ -240,6 +242,7 @@ void managementBuku()
     {
         {
         case 1:
+            
             break;
         case 2:
             break;
@@ -251,6 +254,33 @@ void managementBuku()
         }
     }
 }
+
+void statistikBuku()
+{
+    system("cls");
+    int pilihan;
+    cout << "1. Jumlah Buku Tersedia" << endl;
+    cout << "2. Daftar Buku Dipinjam" << endl;
+    cout << "3. Kembali" << endl;
+    cout << "Pilihan: ";
+    cin >> pilihan;
+    cin.ignore();
+    switch (pilihan)
+    {
+        {
+            case 1;
+                break;
+            case 2:;
+                break;
+            case 3
+                dashboardAdmiin();
+            default:
+                cout << "Pilihan tidak tersedia" << endl;
+                break;
+        }
+    }
+}
+
 void daftarBuku() //
 {
     system("cls");
