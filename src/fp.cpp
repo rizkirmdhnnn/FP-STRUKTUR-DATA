@@ -276,11 +276,6 @@ void daftarBuku() //
         break;
     }
 
-<<<<<<< HEAD
-}
-=======
-// fungsi untuk menampilkan daftar buku
->>>>>>> ce425e8a60327af402159a745d13b7dddc211278
 int main()
 {
     defaultAdmin("admin", "admin", true);
