@@ -49,6 +49,20 @@ void login()
     cin >> username;
     cout << "Masukkan password: ";
     cin >> password;
+    for (int i = 0; i < 100; i++)
+    {
+        if (username == anggota[i].username && password == anggota[i].password)
+        {
+            if (anggota[i].admin == true)
+            {
+                dasboardAdmin(username);
+            }
+            else
+            {
+                dasboardMember(username);
+            }
+        }
+    }
 }
 
 // fungsi untuk membuat akun member baru pada array anggota
