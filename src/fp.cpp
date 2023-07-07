@@ -205,7 +205,8 @@ void dasboardAdmin()
     cout << "Selamat Datang " << endl;
     cout << "1. Kelola Buku" << endl;
     cout << "2. Statistik Buku" << endl;
-    cout << "3. Keluar Aplikasi" << endl;
+    cout << "3. Tambah Admin Baru" << endl;
+    cout << "4. Keluar Aplikasi" << endl;
     cout << "Pilihan: ";
     cin >> pilihan;
     cin.ignore();
@@ -219,6 +220,8 @@ void dasboardAdmin()
             statistikBuku();
             break;
         case 3:
+            break;
+        case 4:
             break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
