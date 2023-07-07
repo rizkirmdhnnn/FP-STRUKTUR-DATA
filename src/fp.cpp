@@ -176,7 +176,7 @@ void dasboardAdmin(string username)
         case 2:
             break;
         case 3:
-            break;
+            return 0;
         default:
             cout << "Pilihan tidak tersedia" << endl;
             break;
@@ -202,7 +202,7 @@ void managementBuku()
         case 2:
             break;
         case 3:
-            break;
+            dasboardAdmin();
         default:
             cout << "Pilihan tidak tersedia" << endl;
             break;
