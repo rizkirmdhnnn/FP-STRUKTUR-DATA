@@ -32,6 +32,7 @@ void pinjamBuku();
 void kembalikanBuku();
 void informasiAkun();
 void statistikBuku();
+void managementBuku();
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -100,6 +101,7 @@ void createAccountMember()
             anggota[i].password = password;
             anggota[i].admin = false;
             cout << "Akun berhasil dibuat" << endl;
+            dasboardMember();
             break;
         }
     }
@@ -140,6 +142,7 @@ void createAccountAdmin()
             anggota[i].password = password;
             anggota[i].admin = true;
             cout << "Akun berhasil dibuat" << endl;
+            dasboardAdmin();
             break;
         }
     }
@@ -245,7 +248,7 @@ void managementBuku()
     {
         {
         case 1:
-            
+
             break;
         case 2:
             break;
@@ -271,15 +274,15 @@ void statistikBuku()
     switch (pilihan)
     {
         {
-            case 1;
-                break;
-            case 2:;
-                break;
-            case 3
-                dashboardAdmiin();
-            default:
-                cout << "Pilihan tidak tersedia" << endl;
-                break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            dasboardAdmin();
+        default:
+            cout << "Pilihan tidak tersedia" << endl;
+            break;
         }
     }
 }
