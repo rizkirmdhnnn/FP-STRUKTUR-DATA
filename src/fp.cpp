@@ -33,6 +33,13 @@ void kembalikanBuku();
 void informasiAkun();
 void statistikBuku();
 void managementBuku();
+void tambahAdminBaru();
+void urutISBN();
+void urutKategori();
+void jumlahBukuTersedia();
+void daftarBukuDipinjam();
+void tambahBuku();
+void hapusBuku();
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -45,6 +52,7 @@ void defaultAdmin(string username, string password, bool admin)
 
 void login()
 {
+    system("cls");
     string username, password;
     cout << "Masukkan username: ";
     cin >> username;
@@ -65,11 +73,14 @@ void login()
         }
     }
     cout << "Username atau password salah" << endl;
+    loginScreen();
 }
 
 // fungsi untuk membuat akun member baru pada array anggota
 void createAccountMember()
 {
+    system("cls");
+
     // deklarasi variabel username dan password
     string username, password;
 
@@ -111,6 +122,8 @@ void createAccountMember()
 // fungsi untuk membuat akun admin baru pada array anggota
 void createAccountAdmin()
 {
+    system("cls");
+
     // deklarasi variabel username dan password
     string username, password;
 
@@ -151,6 +164,7 @@ void createAccountAdmin()
 
 void loginScreen()
 {
+    system("cls");
     int pilihan;
     cout << "1. Masuk" << endl;
     cout << "2. Daftar" << endl;
@@ -175,6 +189,7 @@ void loginScreen()
 // fungsi untuk menampilkan dasboard member setelah login
 void dasboardMember()
 {
+    system("cls");
     int pilihan;
     cout << "Selamat Datang " << endl;
     cout << "1. Daftar Buku" << endl;
@@ -226,6 +241,7 @@ void dasboardAdmin()
         case 3:
             break;
         case 4:
+            loginScreen();
             break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
@@ -249,9 +265,10 @@ void managementBuku()
     {
         {
         case 1:
-
+            tambahBuku();
             break;
         case 2:
+            hapusBuku();
             break;
         case 3:
             dasboardAdmin();
@@ -260,6 +277,29 @@ void managementBuku()
             break;
         }
     }
+}
+
+void jumlahBukuTersedia()
+{
+}
+
+void daftarBukuDipinjam()
+{
+}
+void tambahBuku()
+{
+}
+
+void hapusBuku()
+{
+}
+
+void urutKategori()
+{
+}
+
+void urutISBN()
+{
 }
 
 void statistikBuku()
@@ -276,8 +316,10 @@ void statistikBuku()
     {
         {
         case 1:
+            jumlahBukuTersedia();
             break;
         case 2:
+            daftarBukuDipinjam();
             break;
         case 3:
             dasboardAdmin();
@@ -302,12 +344,13 @@ void daftarBuku() //
     switch (pilMenu)
     {
     case 1:
+        urutKategori();
         break;
     case 2:
+        urutISBN();
         break;
     case 3:
         dasboardAdmin();
-        break;
 
     default:
         cout << "Pilihan tidak tersedia" << endl;
