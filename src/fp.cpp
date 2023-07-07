@@ -64,6 +64,7 @@ void login()
             }
         }
     }
+    cout << "Username atau password salah" << endl;
 }
 
 // fungsi untuk membuat akun member baru pada array anggota
