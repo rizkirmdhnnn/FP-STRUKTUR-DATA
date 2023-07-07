@@ -255,6 +255,7 @@ void daftarBuku() //
 {
     system("cls");
     int pilMenu
+    cout << "Mengurutkan Daftar Buku";
     cout << "1. Berdasarkan Kategori ";
     cout << "2. Berdasarkan ISBN ";
     cout << "3. Kembali ";
