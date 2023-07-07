@@ -378,14 +378,18 @@ void daftarBuku()
         }
     }
     system("pause");
-
-    if (anggota[0].admin)
+for (int i = 0; i < 100; i++)
     {
-        dasboardAdmin();
-    }
-    else
-    {
-        dasboardMember();
+        if (anggota[i].isLogin == true)
+        {
+            if(anggota[i].admin == true){
+            dasboardAdmin();
+            }
+            else
+            {
+                dasboardMember();
+            }
+        }      
     }
 }
 void pinjamBuku()
