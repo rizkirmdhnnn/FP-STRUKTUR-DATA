@@ -158,8 +158,10 @@ void dasboardMember(string username)
     }
 }
 
+//tampilan menu admin
 void dasboardAdmin(string username)
 {
+    system("cls");
     int pilihan;
     cout << "Selamat Datang " + username << endl;
     cout << "1. Kelola Buku" << endl;
@@ -184,8 +186,10 @@ void dasboardAdmin(string username)
     }
 }
 
+//Tampilan Kelola Buku
 void managementBuku()
-{
+{   
+    system("cls");
     int pilihan;
     cout << "Kelola Buku" << endl;
     cout << "1. Tambah Buku" << endl;
