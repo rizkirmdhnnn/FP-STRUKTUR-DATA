@@ -1,0 +1,27 @@
+{
+  "files.associations": {
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "iomanip": "cpp",
+    "iosfwd": "cpp",
+    "ctime": "cpp",
+    "sstream": "cpp",
+    "*.tcc": "cpp",
+    "xstring": "cpp",
+    "xutility": "cpp",
+    "xiosbase": "cpp",
+    "xlocale": "cpp",
+    "fstream": "cpp",
+    "istream": "cpp",
+    "algorithm": "cpp",
+    "atomic": "cpp",
+    "ios": "cpp",
+    "system_error": "cpp",
+    "xmemory": "cpp",
+    "new": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
+}
