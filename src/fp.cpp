@@ -7,8 +7,8 @@ struct Book
     string penulis;
     string kategori;
     string isbn;
+    string dipinjamOleh;
     int tahun;
-    bool dipinjam;
 };
 
 struct Member
@@ -116,6 +116,34 @@ void loginScreen()
     }
 }
 
+void dasboardMember(string username)
+{
+    int pilihan;
+    cout << "Selamat Datang " + username << endl;
+    cout << "1. Daftar Buku" << endl;
+    cout << "2. Pinjam Buku" << endl;
+    cout << "3. Kembalikan Buku" << endl;
+    cout << "4. Informasi Akun" << endl;
+    cout << "Pilihan: ";
+    cin >> pilihan;
+    cin.ignore();
+    switch (pilihan)
+    {
+        {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default:
+            cout << "Pilihan tidak tersedia" << endl;
+            break;
+        }
+    }
+}
 int main()
 {
     defaultAdmin("admin", "admin", true);
