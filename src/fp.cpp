@@ -1,6 +1,8 @@
 #include <iostream>
+#include <stack>
 using namespace std;
 
+const int MAX_STACK_SIZE = 100;
 struct Book
 {
     string judul;
@@ -19,6 +21,7 @@ struct Member
 };
 
 Member anggota[100];
+stack<Book> bukuStack; // Menggunakan stack STL
 
 void defaultAdmin(string username, string password, bool admin);
 void login();
@@ -285,6 +288,7 @@ void managementBuku()
             break;
         case 3:
             dasboardAdmin();
+            break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
             break;
@@ -301,23 +305,107 @@ void daftarBukuDipinjam()
 }
 void tambahBuku()
 {
-}
+    if (bukuStack.size() == MAX_STACK_SIZE)
+    {
+        cout << "Stack penuh. Tidak dapat menambahkan buku." << endl;
+        system("pause");
+        if (anggota[0].admin)
+        {
+            managementBuku();
+        }
+        else
+        {
+            dasboardMember();
+        }
+    }
+    else
+    {
+        Book buku;
+        cin.ignore(); // membersihkan newline sebelumnya
+        cout << "Masukkan judul buku: ";
+        getline(cin, buku.judul);
 
+        cout << "Masukkan penulis buku: ";
+        getline(cin, buku.penulis);
+
+        cout << "Masukkan kategori buku: ";
+        getline(cin, buku.kategori);
+
+        cout << "Masukkan ISBN buku: ";
+        cin >> buku.isbn;
+        cin.ignore(); // membersihkan newline
+
+        cout << "Masukkan tahun terbit buku: ";
+        cin >> buku.tahun;
+
+        bukuStack.push(buku);
+        cout << "Buku berhasil ditambahkan ke dalam stack." << endl;
+        system("pause");
+        if (anggota[0].admin)
+        {
+            managementBuku();
+        }
+        else
+        {
+            dasboardMember();
+        }
+    }
+}
 void hapusBuku()
 {
 }
 void urutKategori()
 {
 }
-
 void urutISBN()
 {
 }
 
 void daftarBuku()
 {
-}
+    system("cls");
+    cout << "Daftar Buku" << endl;
 
+    if (bukuStack.empty())
+    {
+        cout << "Tidak ada buku yang tersedia." << endl;
+    }
+    else
+    {
+        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+
+        while (!bukuStack.empty())
+        {
+            Book buku = bukuStack.top();
+            bukuStack.pop();
+            tempStack.push(buku);
+            cout << "============================================" << endl;
+            cout << "Judul: " << buku.judul << endl;
+            cout << "Penulis: " << buku.penulis << endl;
+            cout << "Kategori: " << buku.kategori << endl;
+            cout << "ISBN: " << buku.isbn << endl;
+            cout << "Tahun Terbit: " << buku.tahun << endl;
+            cout << "============================================" << endl;
+        }
+
+        while (!tempStack.empty())
+        {
+            Book buku = tempStack.top();
+            tempStack.pop();
+            bukuStack.push(buku);
+        }
+    }
+    system("pause");
+
+    if (anggota[0].admin)
+    {
+        dasboardAdmin();
+    }
+    else
+    {
+        dasboardMember();
+    }
+}
 void pinjamBuku()
 {
 }
@@ -350,6 +438,7 @@ void statistikBuku()
             break;
         case 3:
             dasboardAdmin();
+            break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
             break;
@@ -361,7 +450,7 @@ void sortingBuku()
 {
     system("cls");
     int pilMenu;
-    cout << "Mengurutkan Daftar Buku" << endl;
+    cout << "MengurutkanDaftar Buku" << endl;
     cout << "1. Berdasarkan Kategori " << endl;
     cout << "2. Berdasarkan ISBN " << endl;
     cout << "3. Kembali " << endl;
@@ -378,11 +467,13 @@ void sortingBuku()
         break;
     case 3:
         dasboardAdmin();
+        break;
     default:
         cout << "Pilihan tidak tersedia" << endl;
         break;
     }
 }
+
 int main()
 {
     defaultAdmin("admin", "admin", true);
