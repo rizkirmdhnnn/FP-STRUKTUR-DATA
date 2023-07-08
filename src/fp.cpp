@@ -2,8 +2,8 @@
 #include <iomanip>
 #include <stack>
 using namespace std;
-
 const int MaxBuku = 100;
+
 struct Book
 {
     string judul;
@@ -33,6 +33,7 @@ void dasboardMember();
 void dasboardAdmin();
 void daftarBuku();
 void pinjamBuku();
+void sortingBuku();
 void kembalikanBuku();
 void informasiAkun(string admin);
 void statistikBuku();
@@ -43,11 +44,9 @@ void jumlahBukuTersedia();
 void daftarBukuDipinjam();
 void tambahBuku();
 void hapusBuku();
-void sortingBuku();
 void ubahPassword(int index, string dashboard);
 void informasiAkun(string admin);
 void kembaliDashboard();
-void sortingBuku();
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -126,7 +125,7 @@ void buatAkunMember()
                 anggota[i].admin = false;
                 anggota[i].isLogin = true; // Mengubah status login menjadi true
                 cout << "Akun berhasil dibuat" << endl;
-              
+
                 login(); // Memanggil fungsi login setelah membuat akun anggota baru
                 break;
             }
@@ -350,14 +349,11 @@ void tambahBuku()
         kembaliDashboard();
     }
 }
-void hapusBuku()
 
+void hapusBuku()
 {
     system("cls");
-    int pilihan;
-    cout <<setw(60)<< "<<<<< Hapus Buku >>>>>" << endl;
-
-
+    cout << setw(60) << "<<<<< Hapus Buku >>>>>" << endl;
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -366,27 +362,29 @@ void hapusBuku()
     {
         stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
 
-        int counter =1 ;
-    cout << " NO || " << setw(15) << left << "Judul Buku"
-         << " || " << setw(15) << left << "Kategori Buku"
-         << " || " << setw(15) << left << "Penulis Buku"
-         << " || " << setw(15) << left << "Tahun Buku"
-         << " || " << setw(15) << left << "Nomor ISBN" << " ||" << endl;
+        int counter = 1;
+        cout
+            << " NO || " << setw(15) << left << "Judul Buku"
+            << " || " << setw(15) << left << "Kategori Buku"
+            << " || " << setw(15) << left << "Penulis Buku"
+            << " || " << setw(15) << left << "Tahun Buku"
+            << " || " << setw(15) << left << "Nomor ISBN"
+            << " ||" << endl;
 
-    while (!bukuStack.empty())
-    {
-        Book buku = bukuStack.top();
-        bukuStack.pop();
-
-        cout << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
-             << " || " << setw(15) << left << buku.kategori
-             << " || " << setw(15) << left << buku.penulis
-             << " || " << setw(15) << left << buku.tahun
-             << " || " << setw(15) << left << buku.isbn << " ||" << endl;
-
-        counter++;
+        while (!bukuStack.empty())
+        {
+            Book buku = bukuStack.top();
+            bukuStack.pop();
+            cout
+                << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
+                << " || " << setw(15) << left << buku.kategori
+                << " || " << setw(15) << left << buku.penulis
+                << " || " << setw(15) << left << buku.tahun
+                << " || " << setw(15) << left << buku.isbn << " ||" << endl;
+            counter++;
         }
 
+        int pilihan;
         cout << "Pilih nomor buku yang ingin dihapus (0 untuk batalkan): ";
         cin >> pilihan;
         cin.ignore();
@@ -424,8 +422,6 @@ void hapusBuku()
 
     system("pause");
     kembaliDashboard();
-
-
 }
 void urutKategori()
 {
@@ -518,7 +514,7 @@ void ubahPassword(int index, string dashboard)
     cin >> password;
     anggota[index].password = password;
     cout << "Password berhasil diubah" << endl;
-   
+
     if (dashboard == "admin")
     {
         dasboardAdmin();
@@ -615,33 +611,7 @@ void statistikBuku()
     }
 }
 
-void sortingBuku()
-{
-    system("cls");
-    int pilMenu;
-    cout << "MengurutkanDaftar Buku" << endl;
-    cout << "1. Berdasarkan Kategori " << endl;
-    cout << "2. Berdasarkan ISBN " << endl;
-    cout << "3. Kembali " << endl;
-    cout << "\nPilihan : ";
-    cin >> pilMenu;
-    cin.ignore();
-    switch (pilMenu)
-    {
-    case 1:
-        urutKategori();
-        break;
-    case 2:
-        urutISBN();
-        break;
-    case 3:
-        dasboardAdmin();
-        break;
-    default:
-        cout << "Pilihan tidak tersedia" << endl;
-        break;
-    }
-}
+
 
 // fungsi utama
 int main()
