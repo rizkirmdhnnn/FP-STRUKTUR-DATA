@@ -333,6 +333,44 @@ void daftarBukuTersedia()
 
 void daftarBukuDipinjam()
 {
+    system("cls");
+    cout << "Daftar Buku" << endl;
+
+    if (bukuStack.empty())
+    {
+        cout << "Tidak ada buku yang tersedia." << endl;
+        kembaliDashboard();
+    }
+    else
+    {
+        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+
+        while (!bukuStack.empty())
+        {
+            Book buku = bukuStack.top();
+            bukuStack.pop();
+            tempStack.push(buku);
+
+            if (!buku.status)
+            {
+                cout << "============================================" << endl;
+                cout << "Judul: " << buku.judul << endl;
+                cout << "Penulis: " << buku.penulis << endl;
+                cout << "Kategori: " << buku.kategori << endl;
+                cout << "ISBN: " << buku.isbn << endl;
+                cout << "Tahun Terbit: " << buku.tahun << endl;
+            }
+            cout << "============================================" << endl;
+        }
+
+        while (!tempStack.empty())
+        {
+            Book buku = tempStack.top();
+            tempStack.pop();
+            bukuStack.push(buku);
+        }
+        sortingBuku();
+    }
 }
 
 void kembaliDashboard()
