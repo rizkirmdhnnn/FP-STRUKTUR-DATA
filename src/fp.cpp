@@ -4,6 +4,7 @@
 using namespace std;
 const int MaxBuku = 100;
 
+cout
 struct Book
 {
     string judul;
