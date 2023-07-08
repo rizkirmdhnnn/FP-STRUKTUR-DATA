@@ -292,7 +292,7 @@ void managementBuku()
 void daftarBukuTersedia()
 {
     system("cls");
-    cout << "Daftar Buku Tersedia" << endl;
+    cout << "Daftar Buku" << endl;
 
     if (bukuStack.empty())
     {
@@ -303,25 +303,22 @@ void daftarBukuTersedia()
     {
         stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
 
-        int counter = 1;
-        cout << " NO || " << setw(15) << left << "Judul Buku"
-             << " || " << setw(15) << left << "Kategori Buku"
-             << " || " << setw(15) << left << "Penulis Buku"
-             << " || " << setw(15) << left << "Tahun Buku"
-             << " || " << setw(15) << left << "Nomor ISBN"
-             << " ||" << endl;
-
         while (!bukuStack.empty())
         {
             Book buku = bukuStack.top();
             bukuStack.pop();
             tempStack.push(buku);
-            cout << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
-                 << " || " << setw(15) << left << buku.kategori
-                 << " || " << setw(15) << left << buku.penulis
-                 << " || " << setw(15) << left << buku.tahun
-                 << " || " << setw(15) << left << buku.isbn << " ||" << endl;
-            counter++;
+
+            if (buku.status)
+            {
+                cout << "============================================" << endl;
+                cout << "Judul: " << buku.judul << endl;
+                cout << "Penulis: " << buku.penulis << endl;
+                cout << "Kategori: " << buku.kategori << endl;
+                cout << "ISBN: " << buku.isbn << endl;
+                cout << "Tahun Terbit: " << buku.tahun << endl;
+            }
+            cout << "============================================" << endl;
         }
 
         while (!tempStack.empty())
@@ -330,9 +327,7 @@ void daftarBukuTersedia()
             tempStack.pop();
             bukuStack.push(buku);
         }
-
-        system("pause");
-        kembaliDashboard();
+        sortingBuku();
     }
 }
 
