@@ -4,7 +4,6 @@
 using namespace std;
 const int MaxBuku = 100;
 
-cout
 struct Book
 {
     string judul;
@@ -48,6 +47,7 @@ void hapusBuku();
 void ubahPassword(int index, string dashboard);
 void informasiAkun(string admin);
 void kembaliDashboard();
+void daftarBuku();
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -440,6 +440,7 @@ void daftarBuku()
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
+        kembaliDashboard();
     }
     else
     {
@@ -465,8 +466,8 @@ void daftarBuku()
             tempStack.pop();
             bukuStack.push(buku);
         }
+        sortingBuku();
     }
-    sortingBuku();
 }
 
 void sortingBuku()
@@ -611,8 +612,6 @@ void statistikBuku()
         }
     }
 }
-
-
 
 // fungsi utama
 int main()
