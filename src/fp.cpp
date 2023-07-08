@@ -22,7 +22,10 @@ struct Member
     bool isLogin;
 };
 
+// deklarasi array buku
 Member anggota[100];
+
+// deklarasi stack buku
 stack<Book> bukuStack; // Menggunakan stack STL
 
 void defaultAdmin(string username, string password, bool admin, bool isLogin);
@@ -53,12 +56,13 @@ void daftarBuku();
 // parameter: username, password, admin
 void defaultAdmin(string username, string password, bool admin, bool isLogin)
 {
-    anggota[0].username = username;
-    anggota[0].password = password;
-    anggota[0].admin = admin;
-    anggota[0].isLogin = isLogin; // Mengubah status login menjadi false untuk admin default
+    anggota[0].username = username; // Mengisi username
+    anggota[0].password = password; // Mengisi password
+    anggota[0].admin = admin;       // Mengisi status admin
+    anggota[0].isLogin = isLogin;   // Mengisi status login
 }
 
+// fungsi untuk login ke sistem
 void login()
 {
     system("cls");
@@ -67,10 +71,14 @@ void login()
     cin >> username;
     cout << "Masukkan password: ";
     cin >> password;
+
+    // perulangan untuk mengecek apakah username dan password yang dimasukkan sesuai dengan data yang ada pada array anggota
     for (int i = 0; i < 100; i++)
     {
+        // jika username dan password yang dimasukkan sesuai dengan data yang ada pada array anggota
         if (username == anggota[i].username && password == anggota[i].password)
         {
+            // jika status admin pada array anggota index ke i bernilai true
             if (anggota[i].admin == true)
             {
                 anggota[i].isLogin = true;
@@ -84,6 +92,7 @@ void login()
         }
     }
     cout << "Username atau password salah" << endl;
+    _sleep(2000);
     loginScreen();
 }
 
@@ -102,6 +111,7 @@ void buatAkunMember()
     bool usernameTerdaftar = false;
     for (int i = 0; i < 100; i++)
     {
+        // jika username yang dimasukkan sudah terdaftar
         if (username == anggota[i].username)
         {
             cout << "Username sudah terdaftar" << endl;
@@ -110,6 +120,7 @@ void buatAkunMember()
         }
     }
 
+    // jika username yang dimasukkan belum terdaftar
     if (!usernameTerdaftar)
     {
         // input password
@@ -119,14 +130,14 @@ void buatAkunMember()
         // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
         for (int i = 0; i < 100; i++)
         {
+            // jika array anggota index ke i kosong
             if (anggota[i].username == "")
             {
-                anggota[i].username = username;
-                anggota[i].password = password;
-                anggota[i].admin = false;
-                anggota[i].isLogin = true; // Mengubah status login menjadi true
+                anggota[i].username = username; // Mengisi username
+                anggota[i].password = password; // Mengisi password
+                anggota[i].admin = false;       // Mengisi status admin menjadi false
+                anggota[i].isLogin = true;      // Mengubah status login menjadi true
                 cout << "Akun berhasil dibuat" << endl;
-
                 login(); // Memanggil fungsi login setelah membuat akun anggota baru
                 break;
             }
@@ -164,7 +175,7 @@ void loginScreen()
                 break;
             }
         }
-    } while (pilihan != 3);
+    } while (pilihan != 3); // perulangan untuk mengecek apakah pilihan yang dimasukkan tidak sama dengan 3
 }
 
 // fungsi untuk menampilkan dasboard member setelah login
@@ -197,8 +208,10 @@ void dasboardMember()
             informasiAkun("member");
             break;
         case 5:
+            // perulangan untuk mengubah status login menjadi false pada semua array anggota
             for (int i = 0; i < 100; i++)
             {
+                // jika status login pada array anggota index ke i bernilai true
                 if (anggota[i].isLogin == true)
                 {
                     anggota[i].isLogin = false;
@@ -243,8 +256,10 @@ void dasboardAdmin()
             informasiAkun("admin");
             break;
         case 5:
+            // perulangan untuk mengubah status login menjadi false pada semua array anggota
             for (int i = 0; i < 100; i++)
             {
+                // jika status login pada array anggota index ke i bernilai true
                 if (anggota[i].isLogin == true)
                 {
                     anggota[i].isLogin = false; // Mengubah status login menjadi false
@@ -259,6 +274,7 @@ void dasboardAdmin()
     }
 }
 
+// fungsi untuk manajemen buku oleh admin
 void managementBuku()
 {
     system("cls");
@@ -289,11 +305,13 @@ void managementBuku()
     }
 }
 
+// fungsi untuk menampilkan daftar buku yang tersedia
 void daftarBukuTersedia()
 {
     system("cls");
     cout << "Daftar Buku" << endl;
 
+    // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -301,14 +319,18 @@ void daftarBukuTersedia()
     }
     else
     {
-        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        stack<Book> tempStack;
 
+        // perulangan untuk menampilkan buku yang tersedia
         while (!bukuStack.empty())
         {
+            // mengambil buku dari stack
             Book buku = bukuStack.top();
             bukuStack.pop();
             tempStack.push(buku);
 
+            // menampilkan buku jika statusnya true
             if (buku.status)
             {
                 cout << "============================================" << endl;
@@ -321,6 +343,7 @@ void daftarBukuTersedia()
             cout << "============================================" << endl;
         }
 
+        // mengembalikan buku-buku ke stack asli dengan urutan semula
         while (!tempStack.empty())
         {
             Book buku = tempStack.top();
@@ -331,10 +354,13 @@ void daftarBukuTersedia()
     }
 }
 
+// fungsi untuk menampilkan daftar buku yang dipinjam
 void daftarBukuDipinjam()
 {
     system("cls");
     cout << "Daftar Buku" << endl;
+
+    // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -342,14 +368,18 @@ void daftarBukuDipinjam()
     }
     else
     {
-        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        stack<Book> tempStack;
 
+        // perulangan untuk menampilkan buku yang tersedia
         while (!bukuStack.empty())
         {
+            // mengambil buku dari stack
             Book buku = bukuStack.top();
             bukuStack.pop();
             tempStack.push(buku);
 
+            // menampilkan buku jika statusnya false
             if (!buku.status)
             {
                 cout << "============================================" << endl;
@@ -362,6 +392,7 @@ void daftarBukuDipinjam()
             cout << "============================================" << endl;
         }
 
+        // mengembalikan buku-buku ke stack asli dengan urutan semula
         while (!tempStack.empty())
         {
             Book buku = tempStack.top();
@@ -372,12 +403,16 @@ void daftarBukuDipinjam()
     }
 }
 
+// fungsi unttuk kembali ke dashboard
 void kembaliDashboard()
 {
+    // perulangan untuk mengecek status login pada array anggota
     for (int i = 0; i < 100; i++)
     {
+        // jika status login pada array anggota index ke i bernilai true
         if (anggota[i].isLogin == true)
         {
+            // jika status admin pada array anggota index ke i bernilai true
             if (anggota[i].admin == true)
             {
                 dasboardAdmin();
@@ -393,6 +428,7 @@ void kembaliDashboard()
 // fungsi untuk menambahkan buku ke dalam stack buku
 void tambahBuku()
 {
+    // pengecekan apakah stack buku penuh
     if (bukuStack.size() == MaxBuku)
     {
         cout << "Stack penuh. Tidak dapat menambahkan buku." << endl;
@@ -401,8 +437,9 @@ void tambahBuku()
     }
     else
     {
+        // menambahkan buku ke dalam stack
         Book buku;
-        cin.ignore(); // membersihkan newline sebelumnya
+        cin.ignore(); // membersihkan newline
         cout << "Masukkan judul buku: ";
         getline(cin, buku.judul);
 
@@ -419,6 +456,8 @@ void tambahBuku()
         cout << "Masukkan tahun terbit buku: ";
         cin >> buku.tahun;
         buku.status = true;
+
+        // menambahkan buku ke dalam stack
         bukuStack.push(buku);
         cout << "Buku berhasil ditambahkan ke dalam stack." << endl;
         system("pause");
@@ -426,17 +465,21 @@ void tambahBuku()
     }
 }
 
+// fungsi untuk menghapus buku dari stack buku
 void hapusBuku()
 {
     system("cls");
     cout << setw(60) << "<<<<< Hapus Buku >>>>>" << endl;
+
+    // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
     }
     else
     {
-        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        stack<Book> tempStack;
 
         int counter = 1;
         cout
@@ -447,8 +490,10 @@ void hapusBuku()
             << " || " << setw(15) << left << "Nomor ISBN"
             << " ||" << endl;
 
+        // perulangan untuk menampilkan buku yang tersedia
         while (!bukuStack.empty())
         {
+            // mengambil buku dari stack
             Book buku = bukuStack.top();
             bukuStack.pop();
             cout
@@ -465,31 +510,43 @@ void hapusBuku()
         cin >> pilihan;
         cin.ignore();
 
+        // pengecekan apakah pilihan buku yang ingin dihapus valid
         if (pilihan >= 1 && pilihan < counter)
         {
             counter = 1;
-            stack<Book> tempStack2; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+            // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+            stack<Book> tempStack2;
 
+            // perulangan untuk menghapus buku yang dipilih
             while (!tempStack.empty())
             {
+                // mengambil buku dari stack
                 Book buku = tempStack.top();
+                // menghapus buku dari stack
                 tempStack.pop();
+                // pengecekan apakah buku yang diambil merupakan buku yang ingin dihapus
                 if (counter != pilihan)
                 {
+                    // menambahkan buku ke dalam stack sementara
                     tempStack2.push(buku);
                 }
                 counter++;
             }
 
+            // mengembalikan buku-buku ke stack asli dengan urutan semula
             while (!tempStack2.empty())
             {
+                // mengambil buku dari stack sementara
                 Book buku = tempStack2.top();
+                // menghapus buku dari stack sementara
                 tempStack2.pop();
+                // menambahkan buku ke dalam stack asli
                 bukuStack.push(buku);
             }
 
             cout << "Buku berhasil dihapus." << endl;
         }
+        // pengecekan apakah pilihan buku yang ingin dihapus adalah 0
         else if (pilihan != 0)
         {
             cout << "Nomor buku tidak valid." << endl;
@@ -512,6 +569,7 @@ void daftarBuku()
     system("cls");
     cout << "Daftar Buku" << endl;
 
+    // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -519,10 +577,13 @@ void daftarBuku()
     }
     else
     {
-        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        stack<Book> tempStack;
 
+        // perulangan untuk menampilkan buku yang tersedia
         while (!bukuStack.empty())
         {
+            // mengambil buku dari stack
             Book buku = bukuStack.top();
             bukuStack.pop();
             tempStack.push(buku);
@@ -533,6 +594,8 @@ void daftarBuku()
             cout << "ISBN: " << buku.isbn << endl;
             cout << "Tahun Terbit: " << buku.tahun << endl;
             cout << "Status: ";
+
+            // pengecekan status buku
             if (buku.status == true)
             {
                 cout << "Tersedia" << endl;
@@ -544,6 +607,7 @@ void daftarBuku()
             cout << "============================================" << endl;
         }
 
+        // mengembalikan buku-buku ke stack asli dengan urutan semula
         while (!tempStack.empty())
         {
             Book buku = tempStack.top();
@@ -554,6 +618,7 @@ void daftarBuku()
     }
 }
 
+// fungsi untuk sorting buku
 void sortingBuku()
 {
     cout << "Menu Sorting" << endl;
