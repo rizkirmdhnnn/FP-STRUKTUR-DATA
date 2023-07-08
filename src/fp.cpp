@@ -2,7 +2,7 @@
 #include <stack>
 using namespace std;
 
-const int MAX_STACK_SIZE = 100;
+const int MaxBuku = 100;
 struct Book
 {
     string judul;
@@ -45,6 +45,7 @@ void hapusBuku();
 void sortingBuku();
 void ubahPassword(int index, string dashboard);
 void informasiAkun(string admin);
+void kembaliDashboard();
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -134,27 +135,34 @@ void createAccountMember()
 // fungsi untuk membuat akun admin baru pada array anggota
 void loginScreen()
 {
-
-    system("cls");
     int pilihan;
-    cout << "1. Masuk" << endl;
-    cout << "2. Daftar" << endl;
-    cout << "Pilihan: ";
-    cin >> pilihan;
-    cin.ignore();
-    switch (pilihan)
+    do
     {
+        system("cls");
+        cout << "1. Masuk" << endl;
+        cout << "2. Daftar" << endl;
+        cout << "3. Keluar" << endl;
+        cout << "Pilihan: ";
+        cin >> pilihan;
+        cin.ignore();
+        switch (pilihan)
         {
-        case 1:
-            login();
-            break;
-        case 2:
-            createAccountMember();
-            break;
-        default:
-            break;
+            {
+            case 1:
+                login();
+                break;
+            case 2:
+                createAccountMember();
+                break;
+            case 3:
+                exit(0);
+                break;
+            default:
+                cout << "Pilihan tidak tersedia" << endl;
+                break;
+            }
         }
-    }
+    } while (pilihan != 3);
 }
 
 // fungsi untuk menampilkan dasboard member setelah login
@@ -285,20 +293,32 @@ void jumlahBukuTersedia()
 void daftarBukuDipinjam()
 {
 }
+
+void kembaliDashboard()
+{
+    for (int i = 0; i < 100; i++)
+    {
+        if (anggota[i].isLogin == true)
+        {
+            if (anggota[i].admin == true)
+            {
+                dasboardAdmin();
+            }
+            else
+            {
+                dasboardMember();
+            }
+        }
+    }
+}
+
 void tambahBuku()
 {
-    if (bukuStack.size() == MAX_STACK_SIZE)
+    if (bukuStack.size() == MaxBuku)
     {
         cout << "Stack penuh. Tidak dapat menambahkan buku." << endl;
         system("pause");
-        if (anggota[0].admin)
-        {
-            managementBuku();
-        }
-        else
-        {
-            dasboardMember();
-        }
+        kembaliDashboard();
     }
     else
     {
@@ -323,14 +343,7 @@ void tambahBuku()
         bukuStack.push(buku);
         cout << "Buku berhasil ditambahkan ke dalam stack." << endl;
         system("pause");
-        if (anggota[0].admin)
-        {
-            managementBuku();
-        }
-        else
-        {
-            dasboardMember();
-        }
+        kembaliDashboard();
     }
 }
 void hapusBuku()
@@ -378,19 +391,7 @@ void daftarBuku()
         }
     }
     system("pause");
-for (int i = 0; i < 100; i++)
-    {
-        if (anggota[i].isLogin == true)
-        {
-            if(anggota[i].admin == true){
-            dasboardAdmin();
-            }
-            else
-            {
-                dasboardMember();
-            }
-        }      
-    }
+    kembaliDashboard();
 }
 void pinjamBuku()
 {
