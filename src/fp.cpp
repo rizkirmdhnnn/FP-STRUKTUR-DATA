@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <stack>
 using namespace std;
 
@@ -124,7 +125,7 @@ void createAccountMember()
                 anggota[i].admin = false;
                 anggota[i].isLogin = true; // Mengubah status login menjadi true
                 cout << "Akun berhasil dibuat" << endl;
-                _sleep(1000);
+              
                 login(); // Memanggil fungsi login setelah membuat akun anggota baru
                 break;
             }
@@ -347,7 +348,81 @@ void tambahBuku()
     }
 }
 void hapusBuku()
+
 {
+    system("cls");
+    int pilihan;
+    cout <<setw(60)<< "<<<<< Hapus Buku >>>>>" << endl;
+
+
+    if (bukuStack.empty())
+    {
+        cout << "Tidak ada buku yang tersedia." << endl;
+    }
+    else
+    {
+        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+
+        int counter =1 ;
+    cout << " NO || " << setw(15) << left << "Judul Buku"
+         << " || " << setw(15) << left << "Kategori Buku"
+         << " || " << setw(15) << left << "Penulis Buku"
+         << " || " << setw(15) << left << "Tahun Buku"
+         << " || " << setw(15) << left << "Nomor ISBN" << " ||" << endl;
+
+    while (!bukuStack.empty())
+    {
+        Book buku = bukuStack.top();
+        bukuStack.pop();
+
+        cout << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
+             << " || " << setw(15) << left << buku.kategori
+             << " || " << setw(15) << left << buku.penulis
+             << " || " << setw(15) << left << buku.tahun
+             << " || " << setw(15) << left << buku.isbn << " ||" << endl;
+
+        counter++;
+        }
+
+        cout << "Pilih nomor buku yang ingin dihapus (0 untuk batalkan): ";
+        cin >> pilihan;
+        cin.ignore();
+
+        if (pilihan >= 1 && pilihan < counter)
+        {
+            counter = 1;
+            stack<Book> tempStack2; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+
+            while (!tempStack.empty())
+            {
+                Book buku = tempStack.top();
+                tempStack.pop();
+                if (counter != pilihan)
+                {
+                    tempStack2.push(buku);
+                }
+                counter++;
+            }
+
+            while (!tempStack2.empty())
+            {
+                Book buku = tempStack2.top();
+                tempStack2.pop();
+                bukuStack.push(buku);
+            }
+
+            cout << "Buku berhasil dihapus." << endl;
+        }
+        else if (pilihan != 0)
+        {
+            cout << "Nomor buku tidak valid." << endl;
+        }
+    }
+
+    system("pause");
+    kembaliDashboard();
+
+
 }
 void urutKategori()
 {
@@ -409,7 +484,7 @@ void ubahPassword(int index, string dashboard)
     cin >> password;
     anggota[index].password = password;
     cout << "Password berhasil diubah" << endl;
-    _sleep(1000);
+   
     if (dashboard == "admin")
     {
         dasboardAdmin();
