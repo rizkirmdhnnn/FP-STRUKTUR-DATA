@@ -21,7 +21,8 @@
     "ios": "cpp",
     "system_error": "cpp",
     "xmemory": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "type_traits": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }
