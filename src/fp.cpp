@@ -26,7 +26,7 @@ stack<Book> bukuStack; // Menggunakan stack STL
 
 void defaultAdmin(string username, string password, bool admin, bool isLogin);
 void login();
-void createAccountMember();
+void buatAkunMember();
 void loginScreen();
 void dasboardMember();
 void dasboardAdmin();
@@ -46,6 +46,7 @@ void sortingBuku();
 void ubahPassword(int index, string dashboard);
 void informasiAkun(string admin);
 void kembaliDashboard();
+void sortingBuku();
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -86,7 +87,7 @@ void login()
 }
 
 // fungsi untuk membuat akun member baru pada array anggota
-void createAccountMember()
+void buatAkunMember()
 {
     system("cls");
     // deklarasi variabel username dan password
@@ -152,7 +153,7 @@ void loginScreen()
                 login();
                 break;
             case 2:
-                createAccountMember();
+                buatAkunMember();
                 break;
             case 3:
                 exit(0);
@@ -211,6 +212,7 @@ void dasboardMember()
     }
 }
 
+// fungsi untuk menampilkan dasboard admin setelah login
 void dasboardAdmin()
 {
     system("cls");
@@ -312,6 +314,7 @@ void kembaliDashboard()
     }
 }
 
+// fungsi untuk menambahkan buku ke dalam stack buku
 void tambahBuku()
 {
     if (bukuStack.size() == MaxBuku)
@@ -356,6 +359,7 @@ void urutISBN()
 {
 }
 
+// fungsi untuk menampilkan daftar buku
 void daftarBuku()
 {
     system("cls");
@@ -390,9 +394,38 @@ void daftarBuku()
             bukuStack.push(buku);
         }
     }
-    system("pause");
-    kembaliDashboard();
+    sortingBuku();
 }
+
+void sortingBuku()
+{
+    cout << "Menu Sorting" << endl;
+    cout << "1. Urutkan berdasarkan kategori" << endl;
+    cout << "2. Urutkan berdasarkan ISBN" << endl;
+    cout << "3. Kembali" << endl;
+    cout << "Pilihan: ";
+    int pilihan;
+    cin >> pilihan;
+    cin.ignore();
+    switch (pilihan)
+    {
+        {
+        case 1:
+            urutKategori();
+            break;
+        case 2:
+            urutISBN();
+            break;
+        case 3:
+            kembaliDashboard();
+            break;
+        default:
+            cout << "Pilihan tidak tersedia" << endl;
+            break;
+        }
+    }
+}
+// fungsi untuk menampilkan statistik buku
 void pinjamBuku()
 {
 }
@@ -401,6 +434,7 @@ void kembalikanBuku()
 {
 }
 
+// fungsi untuk merubah password
 void ubahPassword(int index, string dashboard)
 {
     system("cls");
@@ -420,6 +454,7 @@ void ubahPassword(int index, string dashboard)
     }
 }
 
+// fungi untuk menampilkan informasi akun
 void informasiAkun(string akun)
 {
     system("cls");
@@ -533,6 +568,7 @@ void sortingBuku()
     }
 }
 
+// fungsi utama
 int main()
 {
     defaultAdmin("admin", "admin", true, false);
