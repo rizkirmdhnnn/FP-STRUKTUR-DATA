@@ -335,7 +335,6 @@ void daftarBukuDipinjam()
 {
     system("cls");
     cout << "Daftar Buku" << endl;
-
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -587,6 +586,7 @@ void sortingBuku()
 void pinjamBuku()
 {
     system("cls");
+    daftarBukuTersedia();
     cout << "Pinjam Buku" << endl;
     cout << "Masukkan Judul buku yang ingin dipinjam: ";
     string judul;
