@@ -309,25 +309,13 @@ void managementBuku()
 void daftarBukuTersedia()
 {
     system("cls");
-    cout << "daftar Buku Tersedia" << endl;
+    cout << "Daftar Buku" << endl;
 
     // pengecekan apakah stack buku kosong
-     if (bukuStack.empty())
+    if (bukuStack.empty())
     {
-        cout << "\nTidak ada buku yang tersedia." << endl;
-        string konfir;
-        cout << "[Y] Untuk Kembali : ";
-        cin >> konfir;
-        if (konfir == "Y" || konfir == "y")
-        {
-            kembaliDashboard();
-        }
-        else
-        {
-            cout << "Anda Masukkan perintah yang salah";
-            _sleep(1000);
-            statistikBuku();
-        }
+        cout << "Tidak ada buku yang tersedia." << endl;
+        statistikBuku();
     }
     else
     {
@@ -376,7 +364,20 @@ void daftarBukuDipinjam()
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
-        kembaliDashboard();
+        string konfir;
+        cout << "[Y] Untuk Kembali : ";
+        cin >> konfir;
+        if (konfir == "Y" || konfir == "y")
+        {
+            statistikBuku();
+        }
+        else
+        {
+            cout << "Anda Masukkan perintah yang salah";
+            _sleep(1000);
+            daftarBukuDipinjam();
+        }
+        sortingBuku();
     }
     else
     {
