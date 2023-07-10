@@ -556,11 +556,134 @@ void hapusBuku()
     system("pause");
     kembaliDashboard();
 }
+// fungsi untuk mengurutkan buku berdasarkan kategori secara ascending
 void urutKategori()
 {
+    system("cls");
+    cout << "Urutkan Buku berdasarkan Kategori (Ascending)" << endl;
+
+    // Membuat salinan stack buku
+    stack<Book> tempStack = bukuStack;
+
+    // Menghitung jumlah buku dalam stack
+    int size = tempStack.size();
+
+    // Array sementara untuk menyimpan buku-buku dalam stack
+    Book *bukuArray = new Book[size];
+
+    // Memindahkan buku-buku dari stack ke array
+    for (int i = 0; i < size; i++)
+    {
+        bukuArray[i] = tempStack.top();
+        tempStack.pop();
+    }
+
+    // Sorting bubble sort secara ascending berdasarkan kategori
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - i - 1; j++)
+        {
+            // Membandingkan kategori buku pada posisi j dan j+1
+            if (bukuArray[j].kategori > bukuArray[j + 1].kategori)
+            {
+                // Menukar posisi buku jika kategori pada posisi j lebih besar dari kategori pada posisi j+1
+                Book temp = bukuArray[j];
+                bukuArray[j] = bukuArray[j + 1];
+                bukuArray[j + 1] = temp;
+            }
+        }
+    }
+
+    // Menampilkan buku-buku setelah diurutkan
+    for (int i = 0; i < size; i++)
+    {
+        cout << "============================================" << endl;
+        cout << "Judul: " << bukuArray[i].judul << endl;
+        cout << "Penulis: " << bukuArray[i].penulis << endl;
+        cout << "Kategori: " << bukuArray[i].kategori << endl;
+        cout << "ISBN: " << bukuArray[i].isbn << endl;
+        cout << "Tahun Terbit: " << bukuArray[i].tahun << endl;
+    }
+    cout << "============================================" << endl;
+
+    // Memasukkan buku-buku dari array ke stack kembali
+    for (int i = size - 1; i >= 0; i--)
+    {
+        tempStack.push(bukuArray[i]);
+    }
+
+    // Mengembalikan stack buku ke stack asli
+    bukuStack = tempStack;
+
+    delete[] bukuArray;
+
+    system("pause");
+    kembaliDashboard();
 }
+
+// fungsi untuk mengurutkan buku berdasarkan nomor ISBN secara ascending
 void urutISBN()
 {
+    system("cls");
+    cout << "Urutkan Buku berdasarkan ISBN (Ascending)" << endl;
+
+    // Membuat salinan stack buku
+    stack<Book> tempStack = bukuStack;
+
+    // Menghitung jumlah buku dalam stack
+    int size = tempStack.size();
+
+    // Array sementara untuk menyimpan buku-buku dalam stack
+    Book *bukuArray = new Book[size];
+
+    // Memindahkan buku-buku dari stack ke array
+    for (int i = 0; i < size; i++)
+    {
+        bukuArray[i] = tempStack.top();
+        tempStack.pop();
+    }
+
+    // Sorting bubble sort secara ascending berdasarkan ISBN
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - i - 1; j++)
+        {
+            // Membandingkan ISBN buku pada posisi j dan j+1
+            if (bukuArray[j].isbn > bukuArray[j + 1].isbn)
+            {
+                // Menukar posisi buku jika ISBN pada posisi j lebih besar dari ISBN pada posisi j+1
+                Book temp = bukuArray[j];
+                bukuArray[j] = bukuArray[j + 1];
+                bukuArray[j + 1] = temp;
+            }
+        }
+    }
+
+    // Menampilkan buku-buku setelah diurutkan
+    for (int i = 0; i < size; i++)
+    {
+        cout << "============================================" << endl;
+        cout << "Judul: " << bukuArray[i].judul << endl;
+        cout << "Penulis: " << bukuArray[i].penulis << endl;
+        cout << "Kategori: " << bukuArray[i].kategori << endl;
+        cout << "ISBN: " << bukuArray[i].isbn << endl;
+        cout << "Tahun Terbit: " << bukuArray[i].tahun << endl;
+    }
+    cout << "============================================" << endl;
+
+    // Memasukkan buku-buku dari array ke stack kembali
+    for (int i = size - 1; i >= 0; i--)
+    {
+        tempStack.push(bukuArray[i]);
+    }
+
+    // Mengembalikan stack buku ke stack asli
+    bukuStack = tempStack;
+
+    delete[] bukuArray;
+
+    system("pause");
+    kembaliDashboard();
 }
 
 // fungsi untuk menampilkan daftar buku
