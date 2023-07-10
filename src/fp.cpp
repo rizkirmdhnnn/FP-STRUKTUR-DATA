@@ -362,7 +362,6 @@ void daftarBukuTersedia()
             tempStack.pop();
             bukuStack.push(buku);
         }
-        sortingBuku();
     }
 }
 
@@ -825,7 +824,8 @@ void pinjamBuku()
         cin >> judul;
         cin.ignore();
 
-        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        stack<Book> tempStack;      // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+        bool bukuDitemukan = false; // Penanda apakah judul buku ditemukan
 
         while (!bukuStack.empty())
         {
@@ -833,6 +833,7 @@ void pinjamBuku()
             bukuStack.pop();
             if (buku.judul == judul)
             {
+                bukuDitemukan = true;
                 if (buku.status == true)
                 {
                     buku.status = false;
@@ -844,6 +845,11 @@ void pinjamBuku()
                 }
             }
             tempStack.push(buku);
+        }
+
+        if (!bukuDitemukan)
+        {
+            cout << "Buku dengan judul '" << judul << "' tidak ditemukan." << endl;
         }
 
         while (!tempStack.empty())
