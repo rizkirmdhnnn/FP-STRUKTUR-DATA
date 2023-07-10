@@ -313,7 +313,7 @@ void daftarBukuTersedia()
 
     // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
-    {
+    {h
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
         cout << "[Y] Untuk Kembali : ";
@@ -503,7 +503,7 @@ void hapusBuku()
         cin >> konfir;
         if (konfir == "Y" || konfir == "y")
         {
-            statistikBuku();
+            managementBuku();
         }
         else
         {
