@@ -22,7 +22,8 @@
     "system_error": "cpp",
     "xmemory": "cpp",
     "new": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "stack": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

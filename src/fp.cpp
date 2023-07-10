@@ -40,18 +40,18 @@ void pinjamBuku();
 void sortingBuku();
 void kembalikanBuku();
 void informasiAkun(string admin);
-void statistikBuku();                               //agung
+void statistikBuku(); // agung
 void managementBuku();
-void urutISBN();                                    //agung
-void urutKategori();                                //agung
-void daftarBukuTersedia();                          //khoirul
-void daftarBukuDipinjam();      
-void tambahBuku();                                  //alex
-void hapusBuku();                                   //khoirul
+void urutISBN();           // agung
+void urutKategori();       // agung
+void daftarBukuTersedia(); // khoirul
+void daftarBukuDipinjam();
+void tambahBuku(); // alex
+void hapusBuku();  // khoirul
 void ubahPassword(int index, string dashboard);
-void informasiAkun(string admin);                   //khoirul
+void informasiAkun(string admin); // khoirul
 void kembaliDashboard();
-void daftarBuku();                                  //alex
+void daftarBuku(); // alex
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -434,7 +434,7 @@ void tambahBuku()
     {
         cout << "Stack penuh. Tidak dapat menambahkan buku." << endl;
         system("pause");
-        kembaliDashboard();
+        managementBuku();
     }
     else
     {
@@ -462,7 +462,7 @@ void tambahBuku()
         bukuStack.push(buku);
         cout << "Buku berhasil ditambahkan ke dalam stack." << endl;
         system("pause");
-        kembaliDashboard();
+        managementBuku();
     }
 }
 
@@ -555,7 +555,7 @@ void hapusBuku()
     }
 
     system("pause");
-    kembaliDashboard();
+    managementBuku();
 }
 // fungsi untuk mengurutkan buku berdasarkan kategori secara ascending
 void urutKategori()
@@ -696,8 +696,20 @@ void daftarBuku()
     // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
     {
-        cout << "Tidak ada buku yang tersedia." << endl;
-        kembaliDashboard();
+        cout << "\nTidak ada buku yang tersedia." << endl;
+        string konfir;
+        cout << "[Y] Untuk Kembali : ";
+        cin >> konfir;
+        if (konfir == "Y" || konfir == "y")
+        {
+            kembaliDashboard();
+        }
+        else
+        {
+            cout << "Anda Masukkan perintah yang salah";
+            _sleep(1000);
+            daftarBuku();
+        }
     }
     else
     {
