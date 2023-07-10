@@ -391,7 +391,6 @@ void daftarBukuTersedia()
                 }
             }
         }
-        s
     }
 }
 
@@ -452,7 +451,8 @@ void daftarBukuDipinjam()
             tempStack.pop();
             bukuStack.push(buku);
         }
-        sortingBuku();
+        system("pause");
+        statistikBuku();
     }
 }
 
