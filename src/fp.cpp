@@ -315,7 +315,19 @@ void daftarBukuTersedia()
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
-        statistikBuku();
+        string konfir;
+        cout << "[Y] Untuk Kembali : ";
+        cin >> konfir;
+        if (konfir == "Y" || konfir == "y")
+        {
+            statistikBuku();
+        }
+        else
+        {
+            cout << "Anda Masukkan perintah yang salah";
+            _sleep(1000);
+            daftarBukuTersedia();
+        }
     }
     else
     {
@@ -377,7 +389,6 @@ void daftarBukuDipinjam()
             _sleep(1000);
             daftarBukuDipinjam();
         }
-        sortingBuku();
     }
     else
     {
