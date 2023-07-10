@@ -39,18 +39,18 @@ void pinjamBuku();
 void sortingBuku();
 void kembalikanBuku();
 void informasiAkun(string admin);
-void statistikBuku();
+void statistikBuku();                               //agung
 void managementBuku();
-void urutISBN();
-void urutKategori();
-void daftarBukuTersedia();
-void daftarBukuDipinjam();
-void tambahBuku();
-void hapusBuku();
+void urutISBN();                                    //agung
+void urutKategori();                                //agung
+void daftarBukuTersedia();                          //khoirul
+void daftarBukuDipinjam();      
+void tambahBuku();                                  //alex
+void hapusBuku();                                   //khoirul
 void ubahPassword(int index, string dashboard);
-void informasiAkun(string admin);
+void informasiAkun(string admin);                   //khoirul
 void kembaliDashboard();
-void daftarBuku();
+void daftarBuku();                                  //alex
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
