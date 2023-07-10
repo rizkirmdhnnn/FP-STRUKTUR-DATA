@@ -320,7 +320,22 @@ void daftarBukuTersedia()
         cin >> konfir;
         if (konfir == "Y" || konfir == "y")
         {
-            statistikBuku();
+            for (int i = 0; i < 100; i++)
+            {
+                // jika status login pada array anggota index ke i bernilai true
+                if (anggota[i].isLogin == true)
+                {
+                    // jika status admin pada array anggota index ke i bernilai true
+                    if (anggota[i].admin == true)
+                    {
+                        statistikBuku();
+                    }
+                    else
+                    {
+                        kembalikanBuku();
+                    }
+                }
+            }
         }
         else
         {
@@ -362,6 +377,8 @@ void daftarBukuTersedia()
             tempStack.pop();
             bukuStack.push(buku);
         }
+
+        system("pause");
     }
 }
 
@@ -494,7 +511,6 @@ void hapusBuku()
     system("cls");
     cout << setw(60) << "<<<<< Hapus Buku >>>>>" << endl;
 
-    // pengecekan apakah stack buku kosong
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -507,16 +523,14 @@ void hapusBuku()
         }
         else
         {
-            cout << "Anda Masukkan perintah yang salah";
+            cout << "Anda memasukkan perintah yang salah.";
             _sleep(1000);
             hapusBuku();
         }
     }
     else
     {
-        // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
         stack<Book> tempStack;
-
         int counter = 1;
         cout
             << " NO || " << setw(15) << left << "Judul Buku"
@@ -526,10 +540,8 @@ void hapusBuku()
             << " || " << setw(15) << left << "Nomor ISBN"
             << " ||" << endl;
 
-        // perulangan untuk menampilkan buku yang tersedia
         while (!bukuStack.empty())
         {
-            // mengambil buku dari stack
             Book buku = bukuStack.top();
             bukuStack.pop();
             cout
@@ -539,6 +551,7 @@ void hapusBuku()
                 << " || " << setw(15) << left << buku.tahun
                 << " || " << setw(15) << left << buku.isbn << " ||" << endl;
             counter++;
+            tempStack.push(buku);
         }
 
         int pilihan;
@@ -546,52 +559,45 @@ void hapusBuku()
         cin >> pilihan;
         cin.ignore();
 
-        // pengecekan apakah pilihan buku yang ingin dihapus valid
         if (pilihan >= 1 && pilihan < counter)
         {
             counter = 1;
-            // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
             stack<Book> tempStack2;
 
-            // perulangan untuk menghapus buku yang dipilih
             while (!tempStack.empty())
             {
-                // mengambil buku dari stack
                 Book buku = tempStack.top();
-                // menghapus buku dari stack
                 tempStack.pop();
-                // pengecekan apakah buku yang diambil merupakan buku yang ingin dihapus
                 if (counter != pilihan)
                 {
-                    // menambahkan buku ke dalam stack sementara
                     tempStack2.push(buku);
                 }
                 counter++;
             }
 
-            // mengembalikan buku-buku ke stack asli dengan urutan semula
             while (!tempStack2.empty())
             {
-                // mengambil buku dari stack sementara
                 Book buku = tempStack2.top();
-                // menghapus buku dari stack sementara
                 tempStack2.pop();
-                // menambahkan buku ke dalam stack asli
                 bukuStack.push(buku);
             }
 
             cout << "Buku berhasil dihapus." << endl;
         }
-        // pengecekan apakah pilihan buku yang ingin dihapus adalah 0
         else if (pilihan != 0)
         {
             cout << "Nomor buku tidak valid." << endl;
+        }
+        else
+        {
+            cout << "Penghapusan buku dibatalkan." << endl;
         }
     }
 
     system("pause");
     managementBuku();
 }
+
 // fungsi untuk mengurutkan buku berdasarkan kategori secara ascending
 void urutKategori()
 {
@@ -654,7 +660,7 @@ void urutKategori()
     delete[] bukuArray;
 
     system("pause");
-    kembaliDashboard();
+    daftarBuku();
 }
 
 // fungsi untuk mengurutkan buku berdasarkan nomor ISBN secara ascending
@@ -719,7 +725,7 @@ void urutISBN()
     delete[] bukuArray;
 
     system("pause");
-    kembaliDashboard();
+    daftarBuku();
 }
 
 // fungsi untuk menampilkan daftar buku
