@@ -498,6 +498,19 @@ void hapusBuku()
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
+        string konfir;
+        cout << "[Y] Untuk Kembali : ";
+        cin >> konfir;
+        if (konfir == "Y" || konfir == "y")
+        {
+            statistikBuku();
+        }
+        else
+        {
+            cout << "Anda Masukkan perintah yang salah";
+            _sleep(1000);
+            hapusBuku();
+        }
     }
     else
     {
@@ -812,8 +825,19 @@ void pinjamBuku()
     if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
-        system("pause");
-        kembaliDashboard();
+        string konfir;
+        cout << "[Y] Untuk Kembali : ";
+        cin >> konfir;
+        if (konfir == "Y" || konfir == "y")
+        {
+            statistikBuku();
+        }
+        else
+        {
+            cout << "Anda Masukkan perintah yang salah";
+            _sleep(1000);
+            pinjamBuku();
+        }
     }
     else
     {
