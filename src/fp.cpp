@@ -378,7 +378,20 @@ void daftarBukuTersedia()
             bukuStack.push(buku);
         }
 
-        system("pause");
+        for (int i = 0; i < 100; i++)
+        {
+            // jika status login pada array anggota index ke i bernilai true
+            if (anggota[i].isLogin == true)
+            {
+                // jika status admin pada array anggota index ke i bernilai true
+                if (anggota[i].admin == true)
+                {
+                    system("pause");
+                    statistikBuku();
+                }
+            }
+        }
+        s
     }
 }
 
