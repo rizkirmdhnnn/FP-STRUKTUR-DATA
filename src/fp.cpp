@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <stack>
-
 using namespace std;
 const int MaxBuku = 100;
 
@@ -40,18 +39,18 @@ void pinjamBuku();
 void sortingBuku();
 void kembalikanBuku();
 void informasiAkun(string admin);
-void statistikBuku();                               //agung
+void statistikBuku(); // agung
 void managementBuku();
-void urutISBN();                                    //agung
-void urutKategori();                                //agung
-void daftarBukuTersedia();                          //khoirul
-void daftarBukuDipinjam();      
-void tambahBuku();                                  //alex
-void hapusBuku();                                   //khoirul
+void urutISBN();           // agung
+void urutKategori();       // agung
+void daftarBukuTersedia(); // khoirul
+void daftarBukuDipinjam();
+void tambahBuku(); // alex
+void hapusBuku();  // khoirul
 void ubahPassword(int index, string dashboard);
-void informasiAkun(string admin);                   //khoirul
+void informasiAkun(string admin); // khoirul
 void kembaliDashboard();
-void daftarBuku();                                  //alex
+void daftarBuku(); // alex
 
 // fungsi untuk mengisi data default admin pada array anggota index ke 0
 // parameter: username, password, admin
@@ -775,43 +774,52 @@ void sortingBuku()
 void pinjamBuku()
 {
     system("cls");
-    daftarBukuTersedia();
-    cout << "Pinjam Buku" << endl;
-    cout << "Masukkan Judul buku yang ingin dipinjam: ";
-    string judul;
-    cin >> judul;
-    cin.ignore();
-
-    stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
-
-    while (!bukuStack.empty())
+    if (bukuStack.empty())
     {
-        Book buku = bukuStack.top();
-        bukuStack.pop();
-        if (buku.judul == judul)
+        cout << "Tidak ada buku yang tersedia." << endl;
+        system("pause");
+        kembaliDashboard();
+    }
+    else
+    {
+        daftarBukuTersedia();
+        cout << "Pinjam Buku" << endl;
+        cout << "Masukkan Judul buku yang ingin dipinjam: ";
+        string judul;
+        cin >> judul;
+        cin.ignore();
+
+        stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
+
+        while (!bukuStack.empty())
         {
-            if (buku.status == true)
+            Book buku = bukuStack.top();
+            bukuStack.pop();
+            if (buku.judul == judul)
             {
-                buku.status = false;
-                cout << "Buku berhasil dipinjam." << endl;
+                if (buku.status == true)
+                {
+                    buku.status = false;
+                    cout << "Buku berhasil dipinjam." << endl;
+                }
+                else
+                {
+                    cout << "Buku sedang dipinjam." << endl;
+                }
             }
-            else
-            {
-                cout << "Buku sedang dipinjam." << endl;
-            }
+            tempStack.push(buku);
         }
-        tempStack.push(buku);
-    }
 
-    while (!tempStack.empty())
-    {
-        Book buku = tempStack.top();
-        tempStack.pop();
-        bukuStack.push(buku);
-    }
+        while (!tempStack.empty())
+        {
+            Book buku = tempStack.top();
+            tempStack.pop();
+            bukuStack.push(buku);
+        }
 
-    system("pause");
-    kembaliDashboard();
+        system("pause");
+        kembaliDashboard();
+    }
 }
 
 void kembalikanBuku()
@@ -921,7 +929,7 @@ void informasiAkun(string akun)
                     }
                     break;
                 case 2:
-                    kembaliDashboard();
+                    dasboardMember();
                 default:
                     cout << "Pilihan tidak tersedia" << endl;
                     break;
