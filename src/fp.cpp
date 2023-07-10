@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stack>
+
 using namespace std;
 const int MaxBuku = 100;
 
@@ -920,7 +921,7 @@ void informasiAkun(string akun)
                     }
                     break;
                 case 2:
-                    dasboardMember();
+                    kembaliDashboard();
                 default:
                     cout << "Pilihan tidak tersedia" << endl;
                     break;
