@@ -853,28 +853,58 @@ void pinjamBuku()
         }
         else
         {
-            cout << "Anda Masukkan perintah yang salah";
+            cout << "Anda memasukkan perintah yang salah";
             _sleep(1000);
             pinjamBuku();
+            return;
         }
     }
     else
     {
-        daftarBukuTersedia();
+        stack<Book> tempStack;
+        bool bukuDitemukan = false;
+        int counter = 1;
+        cout
+            << " NO || " << setw(15) << left << "Judul Buku"
+            << " || " << setw(15) << left << "Kategori Buku"
+            << " || " << setw(15) << left << "Penulis Buku"
+            << " || " << setw(15) << left << "Tahun Buku"
+            << " || " << setw(15) << left << "Nomor ISBN"
+            << " ||" << endl;
+
+        stack<Book> displayStack = bukuStack;
+        while (!displayStack.empty())
+        {
+            Book buku = displayStack.top();
+            displayStack.pop();
+            if (buku.status)
+            {
+                cout
+                    << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
+                    << " || " << setw(15) << left << buku.kategori
+                    << " || " << setw(15) << left << buku.penulis
+                    << " || " << setw(15) << left << buku.tahun
+                    << " || " << setw(15) << left << buku.isbn << " ||" << endl;
+                counter++;
+            }
+        }
+
         cout << "Pinjam Buku" << endl;
-        cout << "Masukkan Judul buku yang ingin dipinjam: ";
-        string judul;
-        cin >> judul;
+        cout << "Pilih nomor buku yang ingin dipinjam (0 untuk batalkan): ";
+        int nomor;
+        cin >> nomor;
         cin.ignore();
 
-        stack<Book> tempStack;      // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
-        bool bukuDitemukan = false; // Penanda apakah judul buku ditemukan
+        if (nomor == 0)
+        {
+            kembaliDashboard();
+        }
 
         while (!bukuStack.empty())
         {
             Book buku = bukuStack.top();
             bukuStack.pop();
-            if (buku.judul == judul)
+            if (counter - 1 == nomor)
             {
                 bukuDitemukan = true;
                 if (buku.status == true)
@@ -888,11 +918,12 @@ void pinjamBuku()
                 }
             }
             tempStack.push(buku);
+            counter--;
         }
 
         if (!bukuDitemukan)
         {
-            cout << "Buku dengan judul '" << judul << "' tidak ditemukan." << endl;
+            cout << "Buku dengan nomor '" << nomor << "' tidak tersedia." << endl;
         }
 
         while (!tempStack.empty())
@@ -910,42 +941,101 @@ void pinjamBuku()
 void kembalikanBuku()
 {
     system("cls");
-    cout << "Kembalikan Buku" << endl;
-    cout << "Masukkan Judul buku yang ingin dikembalikan: ";
-    string judul;
-    cin >> judul;
-    cin.ignore();
-
-    stack<Book> tempStack; // Stack sementara untuk mengembalikan buku-buku ke stack asli dengan urutan semula
-
-    while (!bukuStack.empty())
+    if (bukuStack.empty())
     {
-        Book buku = bukuStack.top();
-        bukuStack.pop();
-        if (buku.judul == judul)
+        cout << "Tidak ada buku yang tersedia." << endl;
+        string konfir;
+        cout << "[Y] Untuk Kembali : ";
+        cin >> konfir;
+        if (konfir == "Y" || konfir == "y")
         {
-            if (buku.status == false)
+            statistikBuku();
+        }
+        else
+        {
+            cout << "Anda memasukkan perintah yang salah";
+            _sleep(1000);
+            pinjamBuku();
+            return;
+        }
+    }
+    else
+    {
+        stack<Book> tempStack;
+        bool bukuDitemukan = false;
+        int counter = 1;
+        cout
+            << " NO || " << setw(15) << left << "Judul Buku"
+            << " || " << setw(15) << left << "Kategori Buku"
+            << " || " << setw(15) << left << "Penulis Buku"
+            << " || " << setw(15) << left << "Tahun Buku"
+            << " || " << setw(15) << left << "Nomor ISBN"
+            << " ||" << endl;
+
+        stack<Book> displayStack = bukuStack;
+        while (!displayStack.empty())
+        {
+            Book buku = displayStack.top();
+            displayStack.pop();
+            if (!buku.status)
             {
-                buku.status = true;
-                cout << "Buku berhasil dikembalikan." << endl;
-            }
-            else
-            {
-                cout << "Buku tidak sedang dipinjam." << endl;
+                cout
+                    << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
+                    << " || " << setw(15) << left << buku.kategori
+                    << " || " << setw(15) << left << buku.penulis
+                    << " || " << setw(15) << left << buku.tahun
+                    << " || " << setw(15) << left << buku.isbn << " ||" << endl;
+                counter++;
             }
         }
-        tempStack.push(buku);
-    }
 
-    while (!tempStack.empty())
-    {
-        Book buku = tempStack.top();
-        tempStack.pop();
-        bukuStack.push(buku);
-    }
+        cout << "Kembalikan Buku" << endl;
+        cout << "Pilih nomor buku yang ingin dikembalikan (0 untuk batalkan): ";
+        int nomor;
+        cin >> nomor;
+        cin.ignore();
 
-    system("pause");
-    kembaliDashboard();
+        if (nomor == 0)
+        {
+            kembaliDashboard();
+        }
+
+        while (!bukuStack.empty())
+        {
+            Book buku = bukuStack.top();
+            bukuStack.pop();
+            if (counter - 1 == nomor)
+            {
+                bukuDitemukan = true;
+                if (buku.status == false)
+                {
+                    buku.status = true;
+                    cout << "Buku berhasil dikembalikan." << endl;
+                }
+                else
+                {
+                    cout << "Buku sedang sudah dikembalikan" << endl;
+                }
+            }
+            tempStack.push(buku);
+            counter--;
+        }
+
+        if (!bukuDitemukan)
+        {
+            cout << "Buku dengan nomor '" << nomor << "' tidak tersedia." << endl;
+        }
+
+        while (!tempStack.empty())
+        {
+            Book buku = tempStack.top();
+            tempStack.pop();
+            bukuStack.push(buku);
+        }
+
+        system("pause");
+        kembaliDashboard();
+    }
 }
 
 // fungsi untuk merubah password
