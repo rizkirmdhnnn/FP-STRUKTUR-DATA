@@ -898,7 +898,7 @@ void sortingBuku()
 void pinjamBuku()
 {
     system("cls");
-    if (bukuStack.empty()) //pengecekan apakah buku stack kosong atau tidak
+    if (bukuStack.empty()) // pengecekan apakah buku stack kosong atau tidak
     {
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
@@ -1126,7 +1126,7 @@ void ubahPassword(int index, string dashboard)
     string password;
     cout << "Masukkan password baru: ";
     cin >> password;                    // Mengambil input password baru dari pengguna
-    anggota[index].password = password; // Memperbarui nilai password dengan index dengan password baru 
+    anggota[index].password = password; // Memperbarui nilai password dengan index dengan password baru
     cout << "Password berhasil diubah" << endl;
 
     if (dashboard == "admin")
