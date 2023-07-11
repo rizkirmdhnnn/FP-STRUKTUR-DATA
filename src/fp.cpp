@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <stack>
 using namespace std;
-const int MaxBuku = 100; //maksimal buku yang ditampung
+const int MaxBuku = 100; // maksimal buku yang ditampung
 
 struct Book
 {
@@ -23,7 +23,7 @@ struct Member
 };
 
 // deklarasi array buku maksimal 100
-Member anggota[100]; 
+Member anggota[100];
 
 // deklarasi stack buku
 stack<Book> bukuStack; // Menggunakan stack STL
@@ -339,7 +339,7 @@ void daftarBukuTersedia()
         }
         else
         {
-            cout << "Anda Masukkan perintah yang salah"; //jika salah maka akan tampil dan sleep 1 detik kemudian mengulang daftarbukutersedia
+            cout << "Anda Masukkan perintah yang salah"; // jika salah maka akan tampil dan sleep 1 detik kemudian mengulang daftarbukutersedia
             _sleep(1000);
             daftarBukuTersedia();
         }
@@ -543,22 +543,22 @@ void hapusBuku()
     system("cls");
     cout << setw(60) << "<<<<< Hapus Buku >>>>>" << endl;
 
-    //pengecekan apakah buku di bukustack kosong atau tidak 
-    if (bukuStack.empty()) 
+    // pengecekan apakah buku di bukustack kosong atau tidak
+    if (bukuStack.empty())
     {
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
         cout << "[Y] Untuk Kembali : ";
         cin >> konfir;
         if (konfir == "Y" || konfir == "y")
-        {// kembali ke void managementbuku()
+        { // kembali ke void managementbuku()
             managementBuku();
         }
         else
         {
             cout << "Anda memasukkan perintah yang salah.";
             _sleep(1000);
-            hapusBuku(); //mengulang di hapusbuku()
+            hapusBuku(); // mengulang di hapusbuku()
         }
     }
     else
@@ -578,7 +578,8 @@ void hapusBuku()
             Book buku = bukuStack.top();
             bukuStack.pop();
             cout
-                << setw(3) << right << counter << " || " << setw(15) << left << buku.judul
+                << setw(3) << right << counter
+                << " || " << setw(15) << left << buku.judul
                 << " || " << setw(15) << left << buku.kategori
                 << " || " << setw(15) << left << buku.penulis
                 << " || " << setw(15) << left << buku.tahun
@@ -677,15 +678,17 @@ void urutKategori()
         << " || " << setw(15) << left << "Nomor ISBN"
         << " || " << setw(15) << left << "Status Buku"
         << " ||" << endl;
-    for (int i = 1; i < size + 1; i++)
+
+    for (int i = 0; i < size; i++)
     {
-        cout << setw(3) << right << i << " || " << setw(15) << left << bukuArray[i].judul
+        cout << setw(3) << right << counter << " || " << setw(15) << left << bukuArray[i].judul
              << " || " << setw(15) << left << bukuArray[i].penulis
              << " || " << setw(15) << left << bukuArray[i].kategori
              << " || " << setw(15) << left << bukuArray[i].isbn
              << " || " << setw(15) << left << bukuArray[i].tahun
              << " || " << setw(15) << left << bukuArray[i].status
              << " ||" << endl;
+        counter++;
     }
 
     // Memasukkan buku-buku dari array ke stack kembali
@@ -751,15 +754,18 @@ void urutISBN()
         << " || " << setw(15) << left << "Nomor ISBN"
         << " || " << setw(15) << left << "Status Buku"
         << " ||" << endl;
-    for (int i = 1; i < size + 1; i++)
+
+    for (int i = 0; i < size; i++)
     {
-        cout << setw(3) << right << i << " || " << setw(15) << left << bukuArray[i].judul
+        cout << setw(3) << right << counter
+             << " || " << setw(15) << left << bukuArray[i].judul
              << " || " << setw(15) << left << bukuArray[i].penulis
              << " || " << setw(15) << left << bukuArray[i].kategori
              << " || " << setw(15) << left << bukuArray[i].isbn
              << " || " << setw(15) << left << bukuArray[i].tahun
              << " || " << setw(15) << left << bukuArray[i].status
              << " ||" << endl;
+        counter++;
     }
 
     // Memasukkan buku-buku dari array ke stack kembali
