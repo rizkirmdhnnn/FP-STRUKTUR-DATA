@@ -591,34 +591,24 @@ void hapusBuku()
         cin >> pilihan;
         cin.ignore();
 
-        if (pilihan >= 1 && pilihan < counter)
+        counter--;
+        if (pilihan != 0)
         {
-            counter = 1;
-            stack<Book> tempStack2;
-
+            // akan menghapus buku yang dipilih
             while (!tempStack.empty())
             {
                 Book buku = tempStack.top();
                 tempStack.pop();
                 if (counter != pilihan)
                 {
-                    tempStack2.push(buku);
+                    bukuStack.push(buku);
                 }
-                counter++;
+                else
+                {
+                    cout << "Buku " << buku.judul << " berhasil dihapus." << endl;
+                }
+                counter--;
             }
-
-            while (!tempStack2.empty())
-            {
-                Book buku = tempStack2.top();
-                tempStack2.pop();
-                bukuStack.push(buku);
-            }
-
-            cout << "Buku berhasil dihapus." << endl;
-        }
-        else if (pilihan != 0)
-        {
-            cout << "Nomor buku tidak valid." << endl;
         }
         else
         {
@@ -1037,7 +1027,7 @@ void kembalikanBuku()
             kembaliDashboard();
             return;
         }
-        
+
         counter = 0;
         while (!bukuStack.empty())
         {
