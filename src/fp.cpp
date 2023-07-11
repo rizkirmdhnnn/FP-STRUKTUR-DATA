@@ -667,16 +667,25 @@ void urutKategori()
     }
 
     // Menampilkan buku-buku setelah diurutkan
-    for (int i = 0; i < size; i++)
+    int counter = 1;
+    cout
+        << " NO || " << setw(15) << left << "Judul Buku"
+        << " || " << setw(15) << left << "Kategori Buku"
+        << " || " << setw(15) << left << "Penulis Buku"
+        << " || " << setw(15) << left << "Tahun Buku"
+        << " || " << setw(15) << left << "Nomor ISBN"
+        << " || " << setw(15) << left << "Status Buku"
+        << " ||" << endl;
+    for (int i = 1; i < size + 1; i++)
     {
-        cout << "============================================" << endl;
-        cout << "Judul: " << bukuArray[i].judul << endl;
-        cout << "Penulis: " << bukuArray[i].penulis << endl;
-        cout << "Kategori: " << bukuArray[i].kategori << endl;
-        cout << "ISBN: " << bukuArray[i].isbn << endl;
-        cout << "Tahun Terbit: " << bukuArray[i].tahun << endl;
+        cout << setw(3) << right << i << " || " << setw(15) << left << bukuArray[i].judul
+             << " || " << setw(15) << left << bukuArray[i].penulis
+             << " || " << setw(15) << left << bukuArray[i].kategori
+             << " || " << setw(15) << left << bukuArray[i].isbn
+             << " || " << setw(15) << left << bukuArray[i].tahun
+             << " || " << setw(15) << left << bukuArray[i].status
+             << " ||" << endl;
     }
-    cout << "============================================" << endl;
 
     // Memasukkan buku-buku dari array ke stack kembali
     for (int i = size - 1; i >= 0; i--)
@@ -732,16 +741,25 @@ void urutISBN()
     }
 
     // Menampilkan buku-buku setelah diurutkan
-    for (int i = 0; i < size; i++)
+    int counter = 1;
+    cout
+        << " NO || " << setw(15) << left << "Judul Buku"
+        << " || " << setw(15) << left << "Kategori Buku"
+        << " || " << setw(15) << left << "Penulis Buku"
+        << " || " << setw(15) << left << "Tahun Buku"
+        << " || " << setw(15) << left << "Nomor ISBN"
+        << " || " << setw(15) << left << "Status Buku"
+        << " ||" << endl;
+    for (int i = 1; i < size + 1; i++)
     {
-        cout << "============================================" << endl;
-        cout << "Judul: " << bukuArray[i].judul << endl;
-        cout << "Penulis: " << bukuArray[i].penulis << endl;
-        cout << "Kategori: " << bukuArray[i].kategori << endl;
-        cout << "ISBN: " << bukuArray[i].isbn << endl;
-        cout << "Tahun Terbit: " << bukuArray[i].tahun << endl;
+        cout << setw(3) << right << i << " || " << setw(15) << left << bukuArray[i].judul
+             << " || " << setw(15) << left << bukuArray[i].penulis
+             << " || " << setw(15) << left << bukuArray[i].kategori
+             << " || " << setw(15) << left << bukuArray[i].isbn
+             << " || " << setw(15) << left << bukuArray[i].tahun
+             << " || " << setw(15) << left << bukuArray[i].status
+             << " ||" << endl;
     }
-    cout << "============================================" << endl;
 
     // Memasukkan buku-buku dari array ke stack kembali
     for (int i = size - 1; i >= 0; i--)
