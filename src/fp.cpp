@@ -612,7 +612,15 @@ void hapusBuku()
         }
         else
         {
+
             cout << "Penghapusan buku dibatalkan." << endl;
+        }
+
+        while (!tempStack.empty())
+        {
+            Book buku = tempStack.top();
+            tempStack.pop();
+            bukuStack.push(buku);
         }
     }
 
