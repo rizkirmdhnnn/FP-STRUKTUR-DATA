@@ -863,7 +863,7 @@ void sortingBuku()
             break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
-            sortingBuku();
+            daftarBuku();
             break;
         }
     }
