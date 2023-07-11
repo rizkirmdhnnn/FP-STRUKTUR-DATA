@@ -933,14 +933,15 @@ void pinjamBuku()
             return;
         }
 
+        counter = 0;
         while (!bukuStack.empty())
         {
             Book buku = bukuStack.top();
             bukuStack.pop();
             if (buku.status)
             {
-                counter--;
-                if (counter == nomor - 1)
+                counter++;
+                if (counter == nomor)
                 {
                     bukuDitemukan = true;
                     if (buku.status)
@@ -1036,15 +1037,16 @@ void kembalikanBuku()
             kembaliDashboard();
             return;
         }
-
+        
+        counter = 0;
         while (!bukuStack.empty())
         {
             Book buku = bukuStack.top();
             bukuStack.pop();
             if (!buku.status)
             {
-                counter--;
-                if (counter == nomor - 1)
+                counter++;
+                if (counter == nomor)
                 {
                     bukuDitemukan = true;
                     if (!buku.status)
