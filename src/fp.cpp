@@ -681,12 +681,12 @@ void urutKategori()
 
     for (int i = 0; i < size; i++)
     {
-        cout << setw(3) << right << counter << " || " << setw(15) << left << bukuArray[i].judul
-             << " || " << setw(15) << left << bukuArray[i].penulis
+        cout << setw(3) << right << counter
+             << " || " << setw(15) << left << bukuArray[i].judul
              << " || " << setw(15) << left << bukuArray[i].kategori
-             << " || " << setw(15) << left << bukuArray[i].isbn
+             << " || " << setw(15) << left << bukuArray[i].penulis
              << " || " << setw(15) << left << bukuArray[i].tahun
-             << " || " << setw(15) << left << bukuArray[i].status
+             << " || " << setw(15) << left << bukuArray[i].isbn
              << " ||" << endl;
         counter++;
     }
@@ -759,11 +759,10 @@ void urutISBN()
     {
         cout << setw(3) << right << counter
              << " || " << setw(15) << left << bukuArray[i].judul
-             << " || " << setw(15) << left << bukuArray[i].penulis
              << " || " << setw(15) << left << bukuArray[i].kategori
-             << " || " << setw(15) << left << bukuArray[i].isbn
+             << " || " << setw(15) << left << bukuArray[i].penulis
              << " || " << setw(15) << left << bukuArray[i].tahun
-             << " || " << setw(15) << left << bukuArray[i].status
+             << " || " << setw(15) << left << bukuArray[i].isbn
              << " ||" << endl;
         counter++;
     }
