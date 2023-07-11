@@ -138,7 +138,8 @@ void buatAkunMember()
                 anggota[i].admin = false;       // Mengisi status admin menjadi false
                 anggota[i].isLogin = true;      // Mengubah status login menjadi true
                 cout << "Akun berhasil dibuat" << endl;
-                login(); // Memanggil fungsi login setelah membuat akun anggota baru
+                _sleep(2000); // Memberi jeda 2 detik
+                login();      // Memanggil fungsi login setelah membuat akun anggota baru
                 break;
             }
         }
@@ -573,10 +574,10 @@ void hapusBuku()
             << " || " << setw(15) << left << "Nomor ISBN"
             << " ||" << endl;
 
-        while (!bukuStack.empty())  //loop while untuk menggambil buku dari stack bukustack
+        while (!bukuStack.empty()) // loop while untuk menggambil buku dari stack bukustack
         {
-            Book buku = bukuStack.top();    //buku pertama diambil dari stack
-            bukuStack.pop();                //buku dihapus dari stack menggunakan pop
+            Book buku = bukuStack.top(); // buku pertama diambil dari stack
+            bukuStack.pop();             // buku dihapus dari stack menggunakan pop
             cout
                 << setw(3) << right << counter
                 << " || " << setw(15) << left << buku.judul
@@ -585,7 +586,7 @@ void hapusBuku()
                 << " || " << setw(15) << left << buku.tahun
                 << " || " << setw(15) << left << buku.isbn << " ||" << endl;
             counter++;
-            tempStack.push(buku); //ditambahkan ke stack sementara (tempstack) menggunakan push
+            tempStack.push(buku); // ditambahkan ke stack sementara (tempstack) menggunakan push
         }
 
         int pilihan;
@@ -595,15 +596,15 @@ void hapusBuku()
 
         counter--;
         if (pilihan != 0)
-        {//loop pertama selesai dikembalikan ke bukustack dan
+        { // loop pertama selesai dikembalikan ke bukustack dan
             // akan menghapus buku yang dipilih
             while (!tempStack.empty())
             {
-                Book buku = tempStack.top(); //fungsi mengambil buku dari tempstack
-                tempStack.pop(); //menghapus buku dari tempstack
+                Book buku = tempStack.top(); // fungsi mengambil buku dari tempstack
+                tempStack.pop();             // menghapus buku dari tempstack
                 if (counter != pilihan)
                 {
-                    bukuStack.push(buku); //menambahkan buku kembali ke buku stack
+                    bukuStack.push(buku); // menambahkan buku kembali ke buku stack
                 }
                 else
                 {
