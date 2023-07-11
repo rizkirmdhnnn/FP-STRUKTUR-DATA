@@ -64,7 +64,7 @@ void defaultAdmin(string username, string password, bool admin, bool isLogin)
 
 // fungsi untuk login ke sistem
 void login()
-{
+{ // Pencarian linear secara berurutan memeriksa setiap elemen array secara berurutan hingga ditemukan elemen yang cocok atau mencapai akhir array.
     system("cls");
     string username, password;
     cout << "Masukkan username: ";
@@ -362,9 +362,9 @@ void daftarBukuTersedia()
         while (!bukuStack.empty())
         {
             // mengambil buku dari stack
-            Book buku = bukuStack.top();
-            bukuStack.pop();
-            tempStack.push(buku);
+            Book buku = bukuStack.top(); // akses elemen teratas (top) dari stack tanpa menghapusnya.
+            bukuStack.pop();             // hapus elemen teratas (top) dari stack.
+            tempStack.push(buku);        // menambahkan elemen buku ke stack bukuStack.
 
             // menampilkan buku jika statusnya true
             if (buku.status)
@@ -862,7 +862,7 @@ void daftarBuku()
     }
 }
 
-// fungsi untuk sorting buku
+// fungsi untuk tampilan sorting buku
 void sortingBuku()
 {
     cout << "Menu Sorting" << endl;
@@ -897,7 +897,7 @@ void sortingBuku()
 void pinjamBuku()
 {
     system("cls");
-    if (bukuStack.empty())
+    if (bukuStack.empty()) //pengecekan apakah buku stack kosong atau tidak
     {
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
@@ -1005,6 +1005,7 @@ void kembalikanBuku()
     system("cls");
     stack<Book> displayStack = bukuStack;
     bool bukuDipinjam = false;
+    // Mengecek apakah ada buku yang sedang dipinjam
     while (!displayStack.empty())
     {
         Book buku = displayStack.top();
@@ -1014,7 +1015,7 @@ void kembalikanBuku()
             bukuDipinjam = true;
         }
     }
-
+    // Jika tidak ada buku yang tersedia atau tidak ada buku yang sedang dipinjam
     if (bukuStack.empty() || bukuDipinjam == false)
     {
         cout << "Tidak ada buku yang tersedia." << endl;
@@ -1045,7 +1046,7 @@ void kembalikanBuku()
             << " || " << setw(15) << left << "Tahun Buku"
             << " || " << setw(15) << left << "Nomor ISBN"
             << " ||" << endl;
-
+        // Menampilkan daftar buku yang sedang dipinjam
         while (!displayStack.empty())
         {
             Book buku = displayStack.top();
@@ -1068,6 +1069,7 @@ void kembalikanBuku()
         cin >> nomor;
         cin.ignore();
 
+        // Jika memilih untuk batalkan pengembalian buku
         if (nomor == 0)
         {
             kembaliDashboard();
@@ -1098,7 +1100,7 @@ void kembalikanBuku()
             }
             tempStack.push(buku);
         }
-
+        // Jika buku dengan nomor yang dipilih tidak ditemukan
         if (!bukuDitemukan)
         {
             cout << "Buku dengan nomor '" << nomor << "' tidak tersedia." << endl;
@@ -1122,8 +1124,8 @@ void ubahPassword(int index, string dashboard)
     system("cls");
     string password;
     cout << "Masukkan password baru: ";
-    cin >> password;
-    anggota[index].password = password;
+    cin >> password;                    // Mengambil input password baru dari pengguna
+    anggota[index].password = password; // Memperbarui nilai password dengan index dengan password baru 
     cout << "Password berhasil diubah" << endl;
 
     if (dashboard == "admin")
