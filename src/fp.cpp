@@ -573,10 +573,10 @@ void hapusBuku()
             << " || " << setw(15) << left << "Nomor ISBN"
             << " ||" << endl;
 
-        while (!bukuStack.empty())
+        while (!bukuStack.empty())  //loop while untuk menggambil buku dari stack bukustack
         {
-            Book buku = bukuStack.top();
-            bukuStack.pop();
+            Book buku = bukuStack.top();    //buku pertama diambil dari stack
+            bukuStack.pop();                //buku dihapus dari stack menggunakan pop
             cout
                 << setw(3) << right << counter
                 << " || " << setw(15) << left << buku.judul
@@ -585,7 +585,7 @@ void hapusBuku()
                 << " || " << setw(15) << left << buku.tahun
                 << " || " << setw(15) << left << buku.isbn << " ||" << endl;
             counter++;
-            tempStack.push(buku);
+            tempStack.push(buku); //ditambahkan ke stack sementara (tempstack) menggunakan push
         }
 
         int pilihan;
@@ -595,15 +595,15 @@ void hapusBuku()
 
         counter--;
         if (pilihan != 0)
-        {
+        {//loop pertama selesai dikembalikan ke bukustack dan
             // akan menghapus buku yang dipilih
             while (!tempStack.empty())
             {
-                Book buku = tempStack.top();
-                tempStack.pop();
+                Book buku = tempStack.top(); //fungsi mengambil buku dari tempstack
+                tempStack.pop(); //menghapus buku dari tempstack
                 if (counter != pilihan)
                 {
-                    bukuStack.push(buku);
+                    bukuStack.push(buku); //menambahkan buku kembali ke buku stack
                 }
                 else
                 {
