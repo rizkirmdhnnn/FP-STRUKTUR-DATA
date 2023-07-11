@@ -864,10 +864,12 @@ void sortingBuku()
             break;
         default:
             cout << "Pilihan tidak tersedia" << endl;
+            daftarBuku();
             break;
         }
     }
 }
+
 // fungsi untuk menampilkan statistik buku
 void pinjamBuku()
 {
@@ -974,10 +976,10 @@ void pinjamBuku()
     }
 }
 
+// fungsi untuk mengembalikan buku
 void kembalikanBuku()
 {
     system("cls");
-
     stack<Book> displayStack = bukuStack;
     bool bukuDipinjam = false;
     while (!displayStack.empty())
@@ -1168,6 +1170,7 @@ void informasiAkun(string akun)
     cout << "Akun tidak ditemukan" << endl;
 }
 
+// fungsi untuk menampilkan statistik buku
 void statistikBuku()
 {
     system("cls");
