@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <stack>
 using namespace std;
-const int MaxBuku = 100;
+const int MaxBuku = 100; //maksimal buku yang ditampung
 
 struct Book
 {
@@ -22,8 +22,8 @@ struct Member
     bool isLogin;
 };
 
-// deklarasi array buku
-Member anggota[100];
+// deklarasi array buku maksimal 100
+Member anggota[100]; 
 
 // deklarasi stack buku
 stack<Book> bukuStack; // Menggunakan stack STL
@@ -339,7 +339,7 @@ void daftarBukuTersedia()
         }
         else
         {
-            cout << "Anda Masukkan perintah yang salah";
+            cout << "Anda Masukkan perintah yang salah"; //jika salah maka akan tampil dan sleep 1 detik kemudian mengulang daftarbukutersedia
             _sleep(1000);
             daftarBukuTersedia();
         }
@@ -543,21 +543,22 @@ void hapusBuku()
     system("cls");
     cout << setw(60) << "<<<<< Hapus Buku >>>>>" << endl;
 
-    if (bukuStack.empty())
+    //pengecekan apakah buku di bukustack kosong atau tidak 
+    if (bukuStack.empty()) 
     {
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
         cout << "[Y] Untuk Kembali : ";
         cin >> konfir;
         if (konfir == "Y" || konfir == "y")
-        {
+        {// kembali ke void managementbuku()
             managementBuku();
         }
         else
         {
             cout << "Anda memasukkan perintah yang salah.";
             _sleep(1000);
-            hapusBuku();
+            hapusBuku(); //mengulang di hapusbuku()
         }
     }
     else
