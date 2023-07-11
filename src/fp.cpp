@@ -1144,7 +1144,7 @@ void informasiAkun(string akun)
                     }
                     break;
                 case 2:
-                    dasboardMember();
+                    kembaliDashboard();
                 default:
                     cout << "Pilihan tidak tersedia" << endl;
                     break;
