@@ -976,7 +976,20 @@ void pinjamBuku()
 void kembalikanBuku()
 {
     system("cls");
-    if (bukuStack.empty())
+
+    stack<Book> displayStack = bukuStack;
+    bool bukuDipinjam = false;
+    while (!displayStack.empty())
+    {
+        Book buku = displayStack.top();
+        displayStack.pop();
+        if (!buku.status)
+        {
+            bukuDipinjam = true;
+        }
+    }
+
+    if (bukuStack.empty() || bukuDipinjam == false)
     {
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
@@ -1007,7 +1020,6 @@ void kembalikanBuku()
             << " || " << setw(15) << left << "Nomor ISBN"
             << " ||" << endl;
 
-        stack<Book> displayStack = bukuStack;
         while (!displayStack.empty())
         {
             Book buku = displayStack.top();
