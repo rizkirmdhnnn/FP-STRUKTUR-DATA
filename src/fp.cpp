@@ -1,6 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <stack>
+#include "menu.cpp"
+#include "xycolor.h"
+
 using namespace std;
 const int MaxBuku = 100; // maksimal buku yang ditampung
 
@@ -67,9 +70,19 @@ void login()
 { // Pencarian linear secara berurutan memeriksa setiap elemen array secara berurutan hingga ditemukan elemen yang cocok atau mencapai akhir array.
     system("cls");
     string username, password;
-    cout << "Masukkan username: ";
+
+    xyColor(45, 10, 7, 12);
+    cout << "                         " << endl;
+    xyColor(45, 12, 7, 0);
+    cout << " Username : " << endl;
+    xyColor(45, 14, 7, 0);
+    cout << " Password : " << endl;
+    xyColor(45, 16, 7, 12);
+    cout << "                         " << endl;
+
+    xyColor(58, 12, 7, 0);
     cin >> username;
-    cout << "Masukkan password: ";
+    xyColor(58, 14, 7, 0);
     cin >> password;
 
     // perulangan untuk mengecek apakah username dan password yang dimasukkan sesuai dengan data yang ada pada array anggota
@@ -91,7 +104,17 @@ void login()
             }
         }
     }
-    cout << "Username atau password salah" << endl;
+    system("cls");
+    xyColor(45, 10, 7, 12);
+    cout << "                         " << endl;
+
+    xyColor(45, 12, 7, 0);
+    cout << "  Akun Tidak Ditemukan   " << endl;
+
+    xyColor(45, 16, 7, 12);
+    cout << "                         " << endl;
+    xyColor(45, 14, 7, 0);
+
     _sleep(2000);
     loginScreen();
 }
@@ -153,26 +176,28 @@ void loginScreen()
     do
     {
         system("cls");
-        cout << "1. Masuk" << endl;
-        cout << "2. Daftar" << endl;
-        cout << "3. Keluar" << endl;
-        cout << "Pilihan: ";
-        cin >> pilihan;
-        cin.ignore();
+        xyColor(50, 10, 7, 12);
+        cout << "    Selamat Datang    " << endl;
+        xyColor(50, 16, 7, 12);
+        cout << "                      " << endl;
+
+        Menu menu;
+        menu.set_xy(50, 12);
+        menu.set_color(menu.RED);
+        pilihan = menu.Gmenu("Masuk", "Daftar Member", "Keluar");
         switch (pilihan)
         {
             {
-            case 1:
+            case 0:
                 login();
                 break;
-            case 2:
+            case 1:
                 buatAkunMember();
                 break;
-            case 3:
+            case 2:
                 exit(0);
                 break;
             default:
-                cout << "Pilihan tidak tersedia" << endl;
                 break;
             }
         }
@@ -898,7 +923,7 @@ void sortingBuku()
 void pinjamBuku()
 {
     system("cls");
-    if (bukuStack.empty()) //pengecekan apakah buku stack kosong atau tidak
+    if (bukuStack.empty()) // pengecekan apakah buku stack kosong atau tidak
     {
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
@@ -1126,7 +1151,7 @@ void ubahPassword(int index, string dashboard)
     string password;
     cout << "Masukkan password baru: ";
     cin >> password;                    // Mengambil input password baru dari pengguna
-    anggota[index].password = password; // Memperbarui nilai password dengan index dengan password baru 
+    anggota[index].password = password; // Memperbarui nilai password dengan index dengan password baru
     cout << "Password berhasil diubah" << endl;
 
     if (dashboard == "admin")
