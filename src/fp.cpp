@@ -72,7 +72,7 @@ void login()
     string username, password;
 
     xyColor(45, 10, 7, 12);
-    cout << "                         " << endl;
+    cout << "          Login          " << endl;
     xyColor(45, 12, 7, 0);
     cout << " Username : " << endl;
     xyColor(45, 14, 7, 0);
@@ -126,8 +126,15 @@ void buatAkunMember()
     // deklarasi variabel username dan password
     string username, password;
 
+    xyColor(45, 10, 7, 12);
+    cout << "          Daftar          " << endl;
+    xyColor(45, 12, 7, 0);
+    cout << " Username : " << endl;
     // input username
-    cout << "Masukkan username: ";
+    xyColor(45, 16, 7, 12);
+    cout << "                          " << endl;
+
+    xyColor(58, 12, 7, 0);
     cin >> username;
 
     // perulangan untuk mengecek apakah username sudah terdaftar atau belum
@@ -137,7 +144,8 @@ void buatAkunMember()
         // jika username yang dimasukkan sudah terdaftar
         if (username == anggota[i].username)
         {
-            cout << "Username sudah terdaftar" << endl;
+            xyColor(45, 14, 7, 0);
+            cout << " Username sudah terdaftar " << endl;
             usernameTerdaftar = true;
             break;
         }
@@ -147,7 +155,10 @@ void buatAkunMember()
     if (!usernameTerdaftar)
     {
         // input password
-        cout << "Masukkan password: ";
+        xyColor(45, 14, 7, 0);
+        cout << " Password : " << endl;
+
+        xyColor(58, 14, 7, 0);
         cin >> password;
 
         // perulangan untuk mengecek apakah array anggota index ke i kosong atau tidak
@@ -160,7 +171,13 @@ void buatAkunMember()
                 anggota[i].password = password; // Mengisi password
                 anggota[i].admin = false;       // Mengisi status admin menjadi false
                 anggota[i].isLogin = true;      // Mengubah status login menjadi true
-                cout << "Akun berhasil dibuat" << endl;
+                xyColor(45, 12, 7, 0);
+                cout << "                                   " << endl;
+                xyColor(45, 13, 7, 0);
+                cout << "  Akun berhasil dibuat  " << endl;
+                xyColor(45, 14, 7, 0);
+                cout << "                                   " << endl;
+                xyColor(58, 12, 7, 0);
                 _sleep(2000); // Memberi jeda 2 detik
                 login();      // Memanggil fungsi login setelah membuat akun anggota baru
                 break;
