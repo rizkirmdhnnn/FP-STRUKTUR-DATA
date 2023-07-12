@@ -903,24 +903,24 @@ void daftarBuku()
 // fungsi untuk tampilan sorting buku
 void sortingBuku()
 {
-    cout << "Menu Sorting" << endl;
-    cout << "1. Urutkan berdasarkan kategori" << endl;
-    cout << "2. Urutkan berdasarkan ISBN" << endl;
-    cout << "3. Kembali" << endl;
-    cout << "Pilihan: ";
+    system("cls");
     int pilihan;
-    cin >> pilihan;
-    cin.ignore();
+    xyColor(50, 10, 7, 12);
+    cout << "Menu Sorting" << endl;
+    Menu menu;
+    menu.set_xy(50, 12);
+    menu.set_color(menu.RED);
+    pilihan = menu.Gmenu("Urutkan berdasarkan kategori", "Urutkan berdasarkan ISBN", "Kembali");
     switch (pilihan)
     {
         {
-        case 1:
+        case 0:
             urutKategori();
             break;
-        case 2:
+        case 1:
             urutISBN();
             break;
-        case 3:
+        case 2:
             kembaliDashboard();
             break;
         default:
@@ -936,7 +936,7 @@ void pinjamBuku()
 {
     system("cls");
     if (bukuStack.empty()) // pengecekan apakah buku stack kosong atau tidak
-    {
+    {   
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
         cout << "[Y] Untuk Kembali : ";
@@ -1056,8 +1056,10 @@ void kembalikanBuku()
     // Jika tidak ada buku yang tersedia atau tidak ada buku yang sedang dipinjam
     if (bukuStack.empty() || bukuDipinjam == false)
     {
+        xyColor(50, 10, 7, 12);
         cout << "Tidak ada buku yang tersedia." << endl;
         string konfir;
+        xyColor(50, 10, 7, 12);
         cout << "[Y] Untuk Kembali : ";
         cin >> konfir;
         if (konfir == "Y" || konfir == "y")
@@ -1066,6 +1068,7 @@ void kembalikanBuku()
         }
         else
         {
+            xyColor(50, 10, 7, 12);
             cout << "Anda memasukkan perintah yang salah";
             _sleep(1000);
             kembalikanBuku();
@@ -1100,8 +1103,9 @@ void kembalikanBuku()
                     << " || " << setw(15) << left << buku.isbn << " ||" << endl;
             }
         }
-
+        xyColor(50, 10, 7, 12);
         cout << "Kembalikan Buku" << endl;
+        xyColor(50, 10, 7, 12);
         cout << "Pilih nomor buku yang ingin dikembalikan (0 untuk batalkan): ";
         int nomor;
         cin >> nomor;
@@ -1128,10 +1132,12 @@ void kembalikanBuku()
                     if (!buku.status)
                     {
                         buku.status = true;
+                        xyColor(50, 10, 7, 12);
                         cout << "Buku " << buku.judul << " berhasil dikembalikan." << endl;
                     }
                     else
                     {
+                        xyColor(50, 10, 7, 12);
                         cout << "Buku " << buku.judul << " sudah dikembalikan" << endl;
                     }
                 }
@@ -1141,6 +1147,7 @@ void kembalikanBuku()
         // Jika buku dengan nomor yang dipilih tidak ditemukan
         if (!bukuDitemukan)
         {
+            xyColor(50, 10, 7, 12);
             cout << "Buku dengan nomor '" << nomor << "' tidak tersedia." << endl;
         }
 
