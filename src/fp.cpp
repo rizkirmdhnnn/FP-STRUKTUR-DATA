@@ -12,7 +12,7 @@ struct Book
     string judul;
     string penulis;
     string kategori;
-    bool status;
+    bool status; //jika true belom dipinjam, jika false berarti sudah dipinjam
     int isbn;
     int tahun;
 };
@@ -21,15 +21,15 @@ struct Member
 {
     string username;
     string password;
-    bool admin;
-    bool isLogin;
+    bool admin; //true akun admin, false akun member
+    bool isLogin;//true akun sedang login, false tidak login
 };
 
 // deklarasi array buku maksimal 100
 Member anggota[100];
 
 // deklarasi stack buku
-stack<Book> bukuStack; // Menggunakan stack STL
+stack<Book> bukuStack; // Menggunakan stack STL ()
 
 void defaultAdmin(string username, string password, bool admin, bool isLogin);
 void login();
@@ -274,31 +274,30 @@ void dasboardAdmin()
 {
     system("cls");
     int pilihan;
+    xyColor(50, 10, 7, 12);
     cout << "Selamat Datang " << endl;
-    cout << "1. Daftar Buku" << endl;
-    cout << "2. Kelola Buku" << endl;
-    cout << "3. Statistik Buku" << endl;
-    cout << "4. Informasi Akun" << endl;
-    cout << "5. Keluar Aplikasi" << endl;
-    cout << "Pilihan: ";
+    Menu menu;
+    menu.set_xy(50, 12);
+    menu.set_color(menu.RED);
+    pilihan = menu.Gmenu("Daftar Buku", "Kelola Buku", "Statistik Buku", "Informasi Akun", "Keluar");
     cin >> pilihan;
     cin.ignore();
     switch (pilihan)
     {
         {
-        case 1:
+        case 0:
             daftarBuku();
             break;
-        case 2:
+        case 1:
             managementBuku();
             break;
-        case 3:
+        case 2:
             statistikBuku();
             break;
-        case 4:
+        case 3:
             informasiAkun("admin");
             break;
-        case 5:
+        case 4:
             // perulangan untuk mengubah status login menjadi false pada semua array anggota
             for (int i = 0; i < 100; i++)
             {
