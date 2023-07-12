@@ -226,31 +226,31 @@ void dasboardMember()
 {
     system("cls");
     int pilihan;
+    xyColor(50, 10, 7, 12);
     cout << "Selamat Datang " << endl;
-    cout << "1. Daftar Buku" << endl;
-    cout << "2. Pinjam Buku" << endl;
-    cout << "3. Kembalikan Buku" << endl;
-    cout << "4. Informasi Akun" << endl;
-    cout << "5. Keluar" << endl;
-    cout << "Pilihan: ";
+    Menu menu;
+    menu.set_xy(50, 12);
+    menu.set_color(menu.RED);
+    pilihan = menu.Gmenu("Daftar Buku", "Pinjam Buku", "Kembalikan Buku", "Informasi Akun", "Keluar");
+    xyColor(50, 16, 15, 0);
     cin >> pilihan;
     cin.ignore();
     switch (pilihan)
     {
         {
-        case 1:
+        case 0:
             daftarBuku();
             break;
-        case 2:
+        case 1:
             pinjamBuku();
             break;
-        case 3:
+        case 2:
             kembalikanBuku();
             break;
-        case 4:
+        case 3:
             informasiAkun("member");
             break;
-        case 5:
+        case 4:
             // perulangan untuk mengubah status login menjadi false pada semua array anggota
             for (int i = 0; i < 100; i++)
             {
@@ -488,9 +488,9 @@ void daftarBukuDipinjam()
         while (!bukuStack.empty())
         {
             // mengambil buku dari stack
-            Book buku = bukuStack.top();
-            bukuStack.pop();
-            tempStack.push(buku);
+            Book buku = bukuStack.top(); // buku teratas diambil
+            bukuStack.pop();             // dan dihapus dari stack
+            tempStack.push(buku);        // dimasukkan ke tempstack dengan push
 
             // menampilkan buku jika statusnya false
             if (!buku.status)
