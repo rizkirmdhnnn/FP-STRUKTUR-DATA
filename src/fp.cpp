@@ -12,7 +12,7 @@ struct Book
     string judul;
     string penulis;
     string kategori;
-    bool status; //jika true belom dipinjam, jika false berarti sudah dipinjam
+    bool status; // jika true belom dipinjam, jika false berarti sudah dipinjam
     int isbn;
     int tahun;
 };
@@ -21,8 +21,8 @@ struct Member
 {
     string username;
     string password;
-    bool admin; //true akun admin, false akun member
-    bool isLogin;//true akun sedang login, false tidak login
+    bool admin;   // true akun admin, false akun member
+    bool isLogin; // true akun sedang login, false tidak login
 };
 
 // deklarasi array buku maksimal 100
@@ -227,7 +227,7 @@ void dasboardMember()
     system("cls");
     int pilihan;
     xyColor(50, 10, 7, 12);
-    cout << "Selamat Datang " << endl;
+    cout << "  Selamat Datang  " << endl;
     Menu menu;
     menu.set_xy(50, 12);
     menu.set_color(menu.RED);
@@ -273,7 +273,7 @@ void dasboardAdmin()
     system("cls");
     int pilihan;
     xyColor(50, 10, 7, 12);
-    cout << "Selamat Datang " << endl;
+    cout << "  Selamat Datang  " << endl;
     Menu menu;
     menu.set_xy(50, 12);
     menu.set_color(menu.RED);
@@ -902,7 +902,7 @@ void daftarBuku()
 
 // fungsi untuk tampilan sorting buku
 void sortingBuku()
-{   
+{
     cout << "Menu Sorting" << endl;
     cout << "1. Urutkan berdasarkan kategori" << endl;
     cout << "2. Urutkan berdasarkan ISBN" << endl;
@@ -1186,30 +1186,35 @@ void informasiAkun(string akun)
         if (anggota[i].isLogin == true)
         {
             // menyimpan data username dan password pada array anggota
-
-            cout << "Informasi Akun" << endl;
+            xyColor(50, 10, 7, 12);
+            cout << "  Informasi Akun  " << endl;
+            xyColor(50, 12, 7, 0);
             cout << "Username : " << anggota[i].username << endl;
+            xyColor(50, 13, 7, 0);
             cout << "Password  : " << anggota[i].password << endl;
 
             if (anggota[i].admin == true)
             {
+                xyColor(50, 14, 7, 0);
                 cout << "Jenis Akun : Admin" << endl;
             }
             else
             {
+                xyColor(50, 14, 7, 0);
                 cout << "Jenis Akun : Member" << endl;
             }
 
             int pilihan;
-            cout << "1. Ubah Password" << endl;
-            cout << "2. Kembali" << endl;
-            cout << "Pilihan: ";
-            cin >> pilihan;
-            cin.ignore();
+            xyColor(50, 16, 7, 12);
+            cout << "  Opsi Pilihan  " << endl;
+            Menu menu;
+            menu.set_xy(50, 18);
+            menu.set_color(menu.RED);
+            pilihan = menu.Gmenu("Ubah Password", "Kembali");
             switch (pilihan)
             {
                 {
-                case 1:
+                case 0:
                     if (akun == "admin")
                     {
                         ubahPassword(i, "admin");
@@ -1221,7 +1226,7 @@ void informasiAkun(string akun)
                         dasboardMember(); // Tambahkan pemanggilan dasboardMember() setelah perubahan password
                     }
                     break;
-                case 2:
+                case 1:
                     kembaliDashboard();
                 default:
                     cout << "Pilihan tidak tersedia" << endl;
