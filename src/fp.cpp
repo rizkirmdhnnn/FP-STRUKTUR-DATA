@@ -233,7 +233,6 @@ void dasboardMember()
     menu.set_color(menu.RED);
     pilihan = menu.Gmenu("Daftar Buku", "Pinjam Buku", "Kembalikan Buku", "Informasi Akun", "Keluar");
     xyColor(50, 16, 15, 0);
-    cin >> pilihan;
     cin.ignore();
     switch (pilihan)
     {
@@ -280,7 +279,6 @@ void dasboardAdmin()
     menu.set_xy(50, 12);
     menu.set_color(menu.RED);
     pilihan = menu.Gmenu("Daftar Buku", "Kelola Buku", "Statistik Buku", "Informasi Akun", "Keluar");
-    cin >> pilihan;
     cin.ignore();
     switch (pilihan)
     {
