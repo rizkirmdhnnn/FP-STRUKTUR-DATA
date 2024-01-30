@@ -1,3 +1,4 @@
+#include <windows.h>
 #include <iostream>
 #include <iomanip>
 #include <stack>
@@ -92,7 +93,7 @@ void login()
         }
     }
     cout << "Username atau password salah" << endl;
-    _sleep(2000);
+    Sleep(2000);
     loginScreen();
 }
 
@@ -138,7 +139,7 @@ void buatAkunMember()
                 anggota[i].admin = false;       // Mengisi status admin menjadi false
                 anggota[i].isLogin = true;      // Mengubah status login menjadi true
                 cout << "Akun berhasil dibuat" << endl;
-                _sleep(2000); // Memberi jeda 2 detik
+                Sleep(2000); // Memberi jeda 2 detik
                 login();      // Memanggil fungsi login setelah membuat akun anggota baru
                 break;
             }
@@ -340,8 +341,8 @@ void daftarBukuTersedia()
         }
         else
         {
-            cout << "Anda Masukkan perintah yang salah"; // jika salah maka akan tampil dan sleep 1 detik kemudian mengulang daftarbukutersedia
-            _sleep(1000);
+            cout << "Anda Masukkan perintah yang salah"; // jika salah maka akan tampil dan Sleep 1 detik kemudian mengulang daftarbukutersedia
+            Sleep(1000);
             daftarBukuTersedia();
         }
     }
@@ -425,7 +426,7 @@ void daftarBukuDipinjam()
         else
         {
             cout << "Anda Masukkan perintah yang salah";
-            _sleep(1000);
+            Sleep(1000);
             daftarBukuDipinjam();
         }
     }
@@ -558,7 +559,7 @@ void hapusBuku()
         else
         {
             cout << "Anda memasukkan perintah yang salah.";
-            _sleep(1000);
+            Sleep(1000);
             hapusBuku(); // mengulang di hapusbuku()
         }
     }
@@ -803,7 +804,7 @@ void daftarBuku()
         else
         {
             cout << "Anda Masukkan perintah yang salah";
-            _sleep(1000);
+            Sleep(1000);
             daftarBuku();
         }
     }
@@ -911,7 +912,7 @@ void pinjamBuku()
         else
         {
             cout << "Anda memasukkan perintah yang salah";
-            _sleep(1000);
+            Sleep(1000);
             pinjamBuku();
             return;
         }
@@ -1030,7 +1031,7 @@ void kembalikanBuku()
         else
         {
             cout << "Anda memasukkan perintah yang salah";
-            _sleep(1000);
+            Sleep(1000);
             kembalikanBuku();
             return;
         }
